@@ -1,0 +1,514 @@
+<!DOCTYPE html><html><head>
+      <title>CMP_SD_前端_BPM附檔</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////Users/raelynn/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.8.18/crossnote/dependencies/katex/katex.min.css">
+      
+      
+      <script type="text/javascript" src="file:////Users/raelynn/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.8.18/crossnote/dependencies/mermaid/mermaid.min.js" charset="UTF-8"></script>
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="bpm附檔需求前台">BPM附檔需求（前台） </h1>
+<h2 id="1-需求背景">1. 需求背景 </h2>
+<ul>
+<li>Jira單：
+<ul>
+<li>CMP-3733 現行版本訂單：BPM附檔需求（前台）</li>
+<li>CMP-3734 現行版本訂變單：BPM附檔需求（前台）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="2-功能說明">2. 功能說明 </h2>
+<h3 id="21-訂單cmp-3733功能異動">2.1 訂單（CMP-3733，功能異動） </h3>
+<ol>
+<li>新增時移除「是否要上傳檔案」的判斷，改為即時上傳。</li>
+<li>上傳時直接呼叫API：
+<ul>
+<li>若為新增子單：後端回傳該批上傳的uuid，新增時再將uuid綁定到子單，刪除時需呼叫API清除該檔案。</li>
+<li>若為既有子單：提供子單id，直接上傳。</li>
+</ul>
+</li>
+<li>檔案大小限制：每次上傳單一檔案最大5MB。</li>
+<li>檔案類型限制：.pdf、.xlsx、.xls、.doc、.docx、.txt、.jpeg、.jpg、.png、.eml、.msg。</li>
+<li>檔案數量限制：訂單流程跑完前，跨子單加總不得超過10項（儲存時後端API也會檢查）。</li>
+</ol>
+<h3 id="22-訂變單cmp-3734新增功能">2.2 訂變單（CMP-3734，新增功能） </h3>
+<ol>
+<li>訂變單的檔案僅留存於訂變單中，不合併回訂單。</li>
+<li>可上傳檔案的狀態限制：創建、已抽單、已拒絕。其餘狀態僅能下載。</li>
+<li>檔案大小限制：每次上傳單一檔案最大5MB。</li>
+<li>檔案類型限制：.pdf、.xlsx、.xls、.doc、.docx、.txt、.jpeg、.jpg、.png、.eml、.msg。</li>
+<li>檔案數量限制：訂單流程跑完前，跨子單加總不得超過10項（儲存時後端API也會檢查）。</li>
+</ol>
+<hr>
+<h2 id="3-附件上傳規則">3. 附件上傳規則 </h2>
+<ul>
+<li>檔案大小：單一檔案最大5MB</li>
+<li>檔案類型：.pdf、.xlsx、.xls、.doc、.docx、.txt、.jpeg、.jpg、.png、.eml、.msg</li>
+<li>檔案數量：跨子單加總最多10項（後端API會檢查）</li>
+</ul>
+<hr>
+<h2 id="4-示意流程圖">4. 示意流程圖 </h2>
+<h3 id="41-新增訂單上傳檔案修正">4.1 新增訂單上傳檔案修正 </h3>
+<div class="mermaid">flowchart TD
+    ActionA[新增訂單] --&gt; ChoiceA{儲存或送簽}
+    ChoiceA --&gt;|儲存| SaveA[新增訂單&lt;br&gt;step: save]
+    SaveA --&gt;| | FileCheckA[❌ 有要上傳檔案？]
+    SaveA --&gt; HomeA[回訂單列表]
+    FileCheckA --&gt;|有| FileUploadA[❌ 上傳檔案]
+    FileUploadA --&gt;| | HomeA[回訂單列表]
+    FileCheckA --&gt;|沒有| HomeA
+    ChoiceA --&gt;|送簽| SaveB[新增訂單&lt;br&gt;step: next]
+    SaveB --&gt; HomeB[回訂單列表]
+    %% 標記已廢止節點與連線
+    style FileCheckA fill:#eee,stroke:#f00,stroke-width:2,color:#888
+    style FileUploadA fill:#eee,stroke:#f00,stroke-width:2,color:#888
+    linkStyle 2 stroke:#f00,stroke-width:2,stroke-dasharray: 5 5
+    linkStyle 3 stroke:#000,stroke-width:1
+    linkStyle 4 stroke:#f00,stroke-width:2,stroke-dasharray: 5 5
+    linkStyle 5 stroke:#f00,stroke-width:2,stroke-dasharray: 5 5
+    linkStyle 6 stroke:#f00,stroke-width:2,stroke-dasharray: 5 5
+    %% 主要節點設為藍色
+    style ActionA fill:#cce6ff,stroke:#3399ff,color:#000
+    style ChoiceA fill:#cce6ff,stroke:#3399ff,color:#000
+    style SaveA fill:#cce6ff,stroke:#3399ff,color:#000
+    style HomeA fill:#cce6ff,stroke:#3399ff,color:#000
+    style SaveB fill:#cce6ff,stroke:#3399ff,color:#000
+    style HomeB fill:#cce6ff,stroke:#3399ff,color:#000
+</div><h3 id="42-訂變單上傳刪除檔案流程圖">4.2 訂變單上傳/刪除檔案流程圖 </h3>
+<div class="mermaid">flowchart LR
+    %% 強制排序的錨點
+    新增訂變單 ~~~ 編輯訂變單
+
+    subgraph 新增訂變單
+      M1["order/ModifyComponent"]
+      M1 --&gt; A1["選擇檔案"]
+      A1 --&gt; B1[呼叫API上傳到暫存區]
+      B1 --&gt; C1[前端暫存uuid，顯示於列表]
+      C1 --&gt; D1[新增訂變單並綁定 uuid]
+      D1 -. 刪除檔案 .-&gt; F1[呼叫API刪除暫存檔案]
+    end
+
+    subgraph 編輯訂變單
+      E1["modification/EditComponent / modification/DetailComponent"]
+      E1 --&gt; A2["選擇檔案"]
+      A2 --&gt; B2[呼叫API直接上傳，含orderModifyId]
+      B2 --&gt; C2[顯示於檔案列表]
+      C2 -. 刪除檔案 .-&gt; D2[呼叫API直接刪除，含orderModifyId]
+    end
+
+</div><h3 id="43-上傳檔案流程圖">4.3 上傳檔案流程圖 </h3>
+<div class="mermaid">flowchart TD
+    Start([點擊選擇檔案]) --&gt; SelectFile[選擇檔案]
+    SelectFile --&gt; CheckCount[檢查本次上傳數量]
+    CheckCount -- 超過上限 --&gt; ErrorCount[顯示「檔案數量超過限制」]
+    CheckCount -- 符合 --&gt; CheckTypeSize[逐一檢查檔案類型與大小]
+    CheckTypeSize -- 有不符 --&gt; ErrorTypeOrSize[顯示「檔案類型/大小不符」]
+    CheckTypeSize -- 全部通過 --&gt; CheckOrderType{判斷是 既有子單/訂變單 或 新增子單/訂變單}
+    CheckOrderType -- 新增子單/訂變單 --&gt; CallAPINew[呼叫API上傳，取得uuid]
+    CallAPINew --&gt;|成功| SaveUUID[暫存uuid於前端，顯示於列表]
+    CallAPINew --&gt;|失敗| ErrorAPI[顯示「上傳失敗」]
+    SaveUUID --&gt; WaitCreate[等待子單/訂變單正式新增]
+    WaitCreate --&gt; BindUUID[新增時將uuid綁定到子單]
+    CheckOrderType -- 既有子單/訂變單 --&gt; CallAPIExist[呼叫API即時上傳]
+    CallAPIExist --&gt;|成功| ShowList[顯示於檔案列表]
+    CallAPIExist --&gt;|失敗| ErrorAPI
+    %% 刪除檔案流程
+    SaveUUID -. 刪除檔案 .-&gt; DeleteAPINew[呼叫API刪除該uuid檔案]
+    ShowList -. 刪除檔案 .-&gt; DeleteAPIExist[呼叫API刪除該檔案]
+</div><br>
+<blockquote>
+<p>補充說明：</p>
+<ul>
+<li>「新增子單」：檔案上傳後後端回傳uuid，前端暫存，等到子單正式新增時再將uuid綁定到子單。刪除時需呼叫API清除該檔案。</li>
+<li>「既有子單」：檔案會即時呼叫API上傳，成功後立即顯示於檔案列表。</li>
+</ul>
+</blockquote>
+<h3 id="44-檔案上傳循序圖">4.4 檔案上傳循序圖 </h3>
+<div class="mermaid">sequenceDiagram
+    actor 使用者
+    participant UI as 前端界面
+    participant Validator as 檔案驗證處理
+    participant UploadService as 上傳處理服務
+    participant API as 後端API
+
+    使用者-&gt;&gt;UI: 點擊選擇檔案
+    UI-&gt;&gt;UI: 開啟檔案選擇器
+    使用者-&gt;&gt;UI: 選擇檔案
+    
+    UI-&gt;&gt;Validator: 檢查本次上傳數量
+    
+    alt 檔案數量超過限制
+        Validator--&gt;&gt;UI: 返回錯誤：檔案數量超過限制
+        UI--&gt;&gt;使用者: 顯示「檔案數量超過限制」
+    else 檔案數量符合限制
+        Validator--&gt;&gt;UI: 數量檢查通過
+        UI-&gt;&gt;Validator: 逐一檢查檔案類型與大小
+        
+        alt 有檔案類型或大小不符
+            Validator--&gt;&gt;UI: 返回錯誤：檔案類型/大小不符
+            UI--&gt;&gt;使用者: 顯示「檔案類型/大小不符」
+        else 所有檔案類型與大小符合
+            Validator--&gt;&gt;UI: 檔案檢查全部通過
+            
+            UI-&gt;&gt;UploadService: 判斷上傳模式
+            
+            alt 新增子單/訂變單
+                UploadService-&gt;&gt;API: 呼叫API上傳檔案到暫存區
+                
+                alt 上傳成功
+                    API--&gt;&gt;UploadService: 返回uuid
+                    UploadService--&gt;&gt;UI: 暫存uuid於前端
+                    UI--&gt;&gt;使用者: 顯示於檔案列表
+                    
+                    Note over UI: 等待子單/訂變單正式新增
+                    
+                    UI-&gt;&gt;API: 新增子單/訂變單時綁定uuid
+                else 上傳失敗
+                    API--&gt;&gt;UploadService: 返回錯誤
+                    UploadService--&gt;&gt;UI: 上傳失敗
+                    UI--&gt;&gt;使用者: 顯示「上傳失敗」
+                end
+                
+            else 既有子單/訂變單
+                UploadService-&gt;&gt;API: 呼叫API即時上傳
+                
+                alt 上傳成功
+                    API--&gt;&gt;UploadService: 上傳成功
+                    UploadService--&gt;&gt;UI: 更新檔案列表
+                    UI--&gt;&gt;使用者: 顯示於檔案列表
+                else 上傳失敗
+                    API--&gt;&gt;UploadService: 返回錯誤
+                    UploadService--&gt;&gt;UI: 上傳失敗
+                    UI--&gt;&gt;使用者: 顯示「上傳失敗」
+                end
+            end
+        end
+    end
+    
+    %% 刪除檔案流程
+    opt 刪除檔案 - 新增子單/訂變單的暫存檔案
+        使用者-&gt;&gt;UI: 點擊刪除檔案
+        UI-&gt;&gt;API: 呼叫API刪除該uuid檔案
+        API--&gt;&gt;UI: 刪除結果
+        UI--&gt;&gt;使用者: 更新檔案列表
+    end
+    
+    opt 刪除檔案 - 既有子單/訂變單的檔案
+        使用者-&gt;&gt;UI: 點擊刪除檔案
+        UI-&gt;&gt;API: 呼叫API刪除該檔案
+        API--&gt;&gt;UI: 刪除結果
+        UI--&gt;&gt;使用者: 更新檔案列表
+    end
+</div><br>
+<br>
+<h2 id="5-程式調整重點">5. 程式調整重點 </h2>
+<h3 id="51-ordersdetailcomponent">5.1 orders/detail.component </h3>
+<ol>
+<li>
+<p><code>html</code>：刪除「上傳檔案列表」區塊</p>
+<pre data-role="codeBlock" data-info="html" class="language-html html"><code><span class="token comment">&lt;!-- 原本的上傳檔案列表 --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-list</span> <span class="token attr-name">nzBordered</span> <span class="token attr-name">nzSize</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>small<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list-container<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">nz-list-item</span> <span class="token attr-name">*ngFor</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>let file of uploadFilesList<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    {{ file.name }}
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-list</span><span class="token punctuation">&gt;</span></span>
+</code></pre></li>
+<li>
+<p><code>addOrder()</code>：與檔案上傳有關的程式碼調整為「只要成功送出 order 就直接返回列表，不再等待檔案上傳結果」</p>
+<pre data-role="codeBlock" data-info="typescript" class="language-typescript typescript"><code><span class="token function">addOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...existing code...</span>
+  <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>orderService<span class="token punctuation">.</span><span class="token function">createOrder</span><span class="token punctuation">(</span>orderData<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token function-variable function">next</span><span class="token operator">:</span> <span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>res<span class="token punctuation">.</span>success<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>notify<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token string">'訂單建立成功'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>router<span class="token punctuation">.</span><span class="token function">navigate</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'/orders'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 直接返回列表</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">error</span><span class="token operator">:</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>notify<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'訂單建立失敗'</span><span class="token punctuation">,</span> err<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 不再等待檔案上傳結果</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+<li>
+<p>其餘與上傳檔案相關的 method/屬性，將一併移除或調整：</p>
+<ul>
+<li><code>showFilesUploadModal()</code>：顯示上傳檔案進度視窗</li>
+<li><code>prepareUploadTasks()</code>：產生批次上傳任務</li>
+<li><code>uploadFiles()</code>：依序執行檔案上傳</li>
+<li><code>uploadOrderFiles()</code>：呼叫API上傳檔案</li>
+<li><code>uploadFilesList</code>：上傳進度與檔案狀態列表</li>
+<li>相關 UI 狀態（如 <code>ui.isFileUploaded</code>）</li>
+</ul>
+<pre data-role="codeBlock" data-info="typescript" class="language-typescript typescript"><code><span class="token comment">// 移除：</span>
+<span class="token function">showFilesUploadModal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span>
+<span class="token function">prepareUploadTasks</span><span class="token punctuation">(</span>orderId<span class="token punctuation">,</span> subOrders<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span>
+<span class="token function">uploadFiles</span><span class="token punctuation">(</span>uploadTasks<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span>
+<span class="token function">uploadOrderFiles</span><span class="token punctuation">(</span>orderId<span class="token punctuation">,</span> subOrderId<span class="token punctuation">,</span> files<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span>
+uploadFilesList <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></li>
+</ol>
+<h3 id="52-attached-filescomponentts">5.2 attached-files.component.ts </h3>
+<p>➡️ <mark><strong>調整為訂單/訂變單共用</strong></mark></p>
+<ol>
+<li><code>selectFileToUpload()</code> ：
+<ul>
+<li>將檔案數量、類型、大小等檢查邏輯抽出為獨立 function，例如 <code>checkUploadCountLimit()</code>、<code>checkFileType()</code>、<code>checkFileSize()</code>。</li>
+<li>主流程僅負責呼叫這些檢查 function，並依據 mode（訂單/訂變單）分流。</li>
+</ul>
+</li>
+<li>檔案上傳流程：<br>
+先判斷 mode（訂單/訂變單），再依據是否為「新增」或「既有」子單/訂變單，決定呼叫 API 或前端暫存。<pre data-role="codeBlock" data-info="typescript" class="language-typescript typescript"><code><span class="token function">selectFileToUpload</span><span class="token punctuation">(</span>event<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword keyword-const">const</span> files <span class="token operator">=</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span><span class="token function">extractFiles</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 檢查數量限制</span>
+  <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword keyword-this">this</span><span class="token punctuation">.</span><span class="token function">checkUploadCountLimit</span><span class="token punctuation">(</span>files<span class="token punctuation">,</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>uploadLimit<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword keyword-return">return</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// 篩選合格大小、類型檔案，再往下處理，或不合格跳提示</span>
+  <span class="token keyword keyword-const">const</span> validFiles <span class="token operator">=</span> files<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>f <span class="token operator">=&gt;</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span><span class="token function">checkFileType</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span><span class="token function">checkFileSize</span><span class="token punctuation">(</span>f<span class="token punctuation">,</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>maxSizeMB<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>mode <span class="token operator">===</span> OrderMode<span class="token punctuation">.</span>modify<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span><span class="token function">handleModifyOrderFiles</span><span class="token punctuation">(</span>event<span class="token punctuation">,</span> validFiles<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword keyword-else">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span><span class="token function">handleOrderFiles</span><span class="token punctuation">(</span>event<span class="token punctuation">,</span> validFiles<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+<li>訂單/訂變單各自的上傳處理：<br>
+依據是否有 subOrderId/modifyOrderId 決定呼叫 API 或前端暫存。<pre data-role="codeBlock" data-info="typescript" class="language-typescript typescript"><code> <span class="token function">handleOrderFiles</span><span class="token punctuation">(</span>event<span class="token punctuation">,</span> files<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>subOrderId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token comment">// （不變）</span>
+     <span class="token comment">// 既有子單：直接API上傳</span>
+     <span class="token comment">// 需要：subOrderId, fileInfo</span>
+   <span class="token punctuation">}</span> <span class="token keyword keyword-else">else</span> <span class="token punctuation">{</span>
+     <span class="token comment">// （此次新增）</span>
+     <span class="token comment">// 新增子單：前端暫存檔案</span>
+     <span class="token comment">// 需要：fileInfo</span>
+     <span class="token comment">// 回傳：event uuid</span>
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+ <span class="token function">handleModifyOrderFiles</span><span class="token punctuation">(</span>event<span class="token punctuation">,</span> files<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>modifyOrderId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token comment">// （此次新增）</span>
+     <span class="token comment">// 既有訂變單：直接API上傳</span>
+     <span class="token comment">// 需要：modifyOrderId, fileInfo</span>
+   <span class="token punctuation">}</span> <span class="token keyword keyword-else">else</span> <span class="token punctuation">{</span>
+     <span class="token comment">// （此次新增）</span>
+     <span class="token comment">// 新增訂變單：前端暫存檔案</span>
+     <span class="token comment">// 需要：fileInfo</span>
+     <span class="token comment">// 回傳：event uuid</span>
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+</code></pre></li>
+<li>檔案刪除處理：<br>
+依據 mode 與是否為既有單據決定呼叫 API 或前端移除。<pre data-role="codeBlock" data-info="typescript" class="language-typescript typescript"><code><span class="token function">removeFile</span><span class="token punctuation">(</span>index<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>mode <span class="token operator">===</span> OrderMode<span class="token punctuation">.</span>modify<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>modifyOrderId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// （此次新增）</span>
+      <span class="token comment">// 既有訂變單：呼叫API刪除</span>
+      <span class="token comment">// 需要：modifyOrderId, fileId</span>
+    <span class="token punctuation">}</span> <span class="token keyword keyword-else">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// （此次新增）</span>
+      <span class="token comment">// 新增訂變單：呼叫API刪除</span>
+      <span class="token comment">// 需要：event uuid, fileName</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token keyword keyword-else">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>subOrderId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// （不變）</span>
+      <span class="token comment">// 既有子單：呼叫API刪除</span>
+      <span class="token comment">// 需要：subOrderId, fileId</span>
+    <span class="token punctuation">}</span> <span class="token keyword keyword-else">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// （此次新增）</span>
+      <span class="token comment">// 新增子單：呼叫API刪除</span>
+      <span class="token comment">// 需要：event uuid, fileName</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+</ol>
+<hr>
+<h2 id="6-需要用到的-api-項目">6. 需要用到的 API 項目 </h2>
+<h3 id="61-現有-api">6.1 現有 API </h3>
+<ol>
+<li>
+<p><strong>既有訂單子單上傳檔案</strong>：<br>
+orderSvc.uploadOrderFiles(orderId, files, folder, subOrderId)</p>
+<blockquote>
+<p><code>POST {gateway.order}/orders/{orderId}/orderDetails/{subOrderId}/files?path=/attachment</code></p>
+</blockquote>
+</li>
+<li>
+<p><strong>既有訂單子單刪除檔案</strong>：<br>
+orderSvc.deleteOrderFile(orderId, fileId, subOrderId)</p>
+<blockquote>
+<p><code>DELETE {gateway.order}/orders/{orderId}/orderDetails/{subOrderId}/files/{fileId}</code></p>
+</blockquote>
+</li>
+</ol>
+<h3 id="62-新增需要的-api">6.2 新增需要的 API </h3>
+<ol start="3">
+<li>
+<p><strong>新增訂單子單上傳檔案到暫存區</strong></p>
+<blockquote></blockquote>
+</li>
+<li>
+<p><strong>刪除暫存檔案</strong></p>
+<blockquote></blockquote>
+</li>
+<li>
+<p><strong>訂變單上傳檔案列表</strong></p>
+<blockquote></blockquote>
+</li>
+<li>
+<p><strong>訂變單上傳檔案</strong></p>
+<blockquote></blockquote>
+</li>
+<li>
+<p><strong>訂變單刪除檔案</strong></p>
+<blockquote></blockquote>
+</li>
+<li>
+<p><strong>訂變單暫存檔案上傳</strong></p>
+<blockquote></blockquote>
+</li>
+<li>
+<p><strong>訂變單暫存檔案刪除</strong></p>
+<blockquote></blockquote>
+</li>
+<li>
+<p><strong>訂變單下載檔案</strong></p>
+</li>
+</ol>
+<blockquote></blockquote>
+<h2 id="7-頁面與-component-實現">7. 頁面與 Component 實現 </h2>
+<h3 id="71-核心-component----attachedfilescomponent">7.1 核心 Component  - AttachedFilesComponent </h3>
+<p>此功能主要透過組件 <code>AttachedFilesComponent</code> 實現，用於處理檔案上傳、列表顯示和刪除功能。</p>
+<h4 id="711-component-位置">7.1.1 Component 位置 </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>src/app/orders/sub-order/attached-files/attached-files.component.ts
+src/app/orders/sub-order/attached-files/attached-files.component.html
+src/app/orders/sub-order/attached-files/attached-files.component.scss
+</code></pre><h4 id="712-component-用途">7.1.2 Component 用途 </h4>
+<ul>
+<li>統一處理訂單和訂變單的附件上傳功能</li>
+<li>提供檔案選擇、上傳、列表顯示和刪除的介面</li>
+<li>根據不同的使用情境(新增/編輯、訂單/訂變單)調用對應的 API</li>
+</ul>
+<h3 id="72-使用此-component-的頁面">7.2 使用此 Component 的頁面 </h3>
+<ol>
+<li>
+<p><strong>訂單子單詳情頁面</strong></p>
+<ul>
+<li>用於訂單子單的附件管理<pre data-role="codeBlock" data-info="" class="language-text"><code>src/app/orders/sub-order/sub-order.component.ts
+src/app/orders/sub-order/sub-order.component.html
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p><strong>訂變單檢視頁面</strong></p>
+<ul>
+<li>用於檢視訂變單時的檔案上傳<pre data-role="codeBlock" data-info="" class="language-text"><code>src/app/orders/modify/modify.component.ts
+src/app/orders/modify/modify.component.html
+</code></pre></li>
+<li>單頭增加上傳附件按鈕<br>
+<img src="./images/7.2.2-1-%E5%96%AE%E9%A0%AD%E5%A2%9E%E5%8A%A0%E4%B8%8A%E5%82%B3%E9%99%84%E4%BB%B6%E6%8C%89%E9%88%95.png" alt="單頭增加上傳附件按鈕"></li>
+<li>點擊按鈕後展開側邊欄供使用者上傳檔案<br>
+<img src="./images/7.2.2-2-%E9%BB%9E%E6%93%8A%E6%8C%89%E9%88%95%E5%BE%8C%E5%B1%95%E9%96%8B%E5%81%B4%E9%82%8A%E6%AC%84%E4%BE%9B%E4%BD%BF%E7%94%A8%E8%80%85%E4%B8%8A%E5%82%B3%E6%AA%94%E6%A1%88.png" alt="點擊按鈕後展開側邊欄供使用者上傳檔案"></li>
+</ul>
+</li>
+<li>
+<p><strong>訂變單編輯頁面</strong></p>
+<ul>
+<li>用於編輯訂變單的附件管理<pre data-role="codeBlock" data-info="" class="language-text"><code>src/app/modification/edit/edit.component.ts
+src/app/modification/edit/edit.component.html
+src/app/modification/detail/detail.component.ts
+src/app/modification/detail/detail.component.html
+</code></pre></li>
+<li>單頭增加上傳附件按鈕<br>
+<img src="./images/7.2.3-1-%E5%96%AE%E9%A0%AD%E5%A2%9E%E5%8A%A0%E4%B8%8A%E5%82%B3%E9%99%84%E4%BB%B6%E6%8C%89%E9%88%95.png" alt="單頭增加上傳附件按鈕"></li>
+<li>點擊按鈕後展開側邊欄供使用者上傳檔案<br>
+<img src="./images/7.2.3-2-%E9%BB%9E%E6%93%8A%E6%8C%89%E9%88%95%E5%BE%8C%E5%B1%95%E9%96%8B%E5%81%B4%E9%82%8A%E6%AC%84%E4%BE%9B%E4%BD%BF%E7%94%A8%E8%80%85%E4%B8%8A%E5%82%B3%E6%AA%94%E6%A1%88.png" alt="點擊按鈕後展開側邊欄供使用者上傳檔案"></li>
+</ul>
+</li>
+</ol>
+<h3 id="73-相關服務">7.3 相關服務 </h3>
+<ol>
+<li>
+<p><strong>OrderService</strong></p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>src/app/core/services/order.service.ts
+</code></pre><ul>
+<li>提供訂單相關的附件操作 API</li>
+</ul>
+</li>
+<li>
+<p><strong>ModificationService</strong></p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>src/app/core/services/modification.service.ts
+</code></pre><ul>
+<li>提供訂變單相關的附件操作 API</li>
+</ul>
+</li>
+</ol>
+
+      </div>
+      
+      
+    
+    
+    <script type="module">
+// TODO: If ZenUML gets integrated into mermaid in the future,
+//      we can remove the following lines.
+
+
+var MERMAID_CONFIG = ({"startOnLoad":false});
+if (typeof MERMAID_CONFIG !== 'undefined') {
+  MERMAID_CONFIG.startOnLoad = false
+  MERMAID_CONFIG.cloneCssStyles = false
+  MERMAID_CONFIG.theme = "default"
+}
+
+mermaid.initialize(MERMAID_CONFIG || {})
+if (typeof(window['Reveal']) !== 'undefined') {
+  function mermaidRevealHelper(event) {
+    var currentSlide = event.currentSlide
+    var diagrams = currentSlide.querySelectorAll('.mermaid')
+    for (var i = 0; i < diagrams.length; i++) {
+      var diagram = diagrams[i]
+      if (!diagram.hasAttribute('data-processed')) {
+        mermaid.init(null, diagram, ()=> {
+          Reveal.slide(event.indexh, event.indexv)
+        })
+      }
+    }
+  }
+  Reveal.addEventListener('slidetransitionend', mermaidRevealHelper)
+  Reveal.addEventListener('ready', mermaidRevealHelper)
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+} else {
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+}
+</script>
+    
+    
+    
+  
+    </body></html>

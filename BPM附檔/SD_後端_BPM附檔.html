@@ -1,0 +1,1193 @@
+<!DOCTYPE html><html><head>
+      <title>CMP_SD_後端_BPM附檔</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////Users/raelynn/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.8.18/crossnote/dependencies/katex/katex.min.css">
+      
+      
+      <script type="text/javascript" src="file:////Users/raelynn/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.8.18/crossnote/dependencies/mermaid/mermaid.min.js" charset="UTF-8"></script>
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="cmp-3620-bpm附加檔案上傳---軟體設計文件">CMP-3620 BPM附加檔案上傳 - 軟體設計文件 </h1>
+<h2 id="修訂紀錄">修訂紀錄 </h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">版本</th>
+<th style="text-align:center">日期</th>
+<th style="text-align:center">作者</th>
+<th style="text-align:left">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>v1.0.0</strong></td>
+<td style="text-align:center">2025-06-30</td>
+<td style="text-align:center">Jacky Cheng</td>
+<td style="text-align:left">初稿建立</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>v1.1.0</strong></td>
+<td style="text-align:center">2025-07-03</td>
+<td style="text-align:center">Jacky Cheng</td>
+<td style="text-align:left">1. 新增目錄 <br> 2. 功能實現詳述：新增BPM系統整合流程 <br> 3. 功能實現詳述：新增定時清理機制 <br> 4. 技術架構設計：核心組件設計補充Function實現邏輯</td>
+</tr>
+</tbody>
+</table>
+<h2 id="目錄">目錄 </h2>
+<ul>
+<li><a href="#1-%E9%9C%80%E6%B1%82">1. 需求</a></li>
+<li><a href="#2-%E8%AE%8A%E6%9B%B4%E9%A0%85%E7%9B%AE%E7%B8%BD%E8%A6%BD">2. 變更項目總覽</a></li>
+<li><a href="#3-%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E9%A1%9E%E5%88%A5%E8%A8%AD%E8%A8%88%E8%AA%BF%E6%95%B4">3. 資料結構與類別設計調整</a>
+<ul>
+<li><a href="#3-1-filereadrs-%E9%A1%9E%E5%88%A5%E8%A8%AD%E8%A8%88---%E5%8F%96%E5%BE%97%E9%99%84%E5%8A%A0%E6%AA%94%E6%A1%88%E5%88%97%E8%A1%A8%E7%9A%84api%E5%9B%9E%E6%87%89">3-1. FileReadRs 類別設計 - 取得附加檔案列表的API回應</a>
+<ul>
+<li><a href="#3-1-1-%E9%A1%9E%E5%88%A5%E6%AC%84%E4%BD%8D">3-1-1. 類別欄位</a></li>
+<li><a href="#3-1-2-%E9%A1%9E%E5%88%A5%E8%AA%AA%E6%98%8E">3-1-2. 類別說明</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-%E5%8A%9F%E8%83%BD%E5%AF%A6%E7%8F%BE%E8%A9%B3%E8%BF%B0">4. 功能實現詳述</a>
+<ul>
+<li><a href="#4-1-%E4%B8%8A%E5%82%B3%E4%BA%8B%E4%BB%B6%E6%A9%9F%E5%88%B6">4-1. 上傳事件機制</a></li>
+<li><a href="#4-2-%E6%AA%94%E6%A1%88%E4%B8%8A%E5%82%B3%E6%B5%81%E7%A8%8B">4-2. 檔案上傳流程</a>
+<ul>
+<li><a href="#4-2-1-%E4%B8%8A%E5%82%B3%E4%BA%8B%E4%BB%B6">4-2-1. 上傳事件</a></li>
+<li><a href="#4-2-2-%E8%A8%82%E5%96%AE%E6%AA%94%E6%A1%88%E4%B8%8A%E5%82%B3%E6%B5%81%E7%A8%8B%E6%96%B0%E5%A2%9E%E8%A8%82%E5%96%AE">4-2-2. 訂單檔案上傳流程(新增訂單)</a></li>
+<li><a href="#4-2-3-%E8%A8%82%E5%96%AE%E6%AA%94%E6%A1%88%E4%B8%8A%E5%82%B3%E6%B5%81%E7%A8%8B%E5%B7%B2%E5%BB%BA%E7%AB%8B%E8%A8%82%E5%96%AE">4-2-3. 訂單檔案上傳流程(已建立訂單)</a></li>
+<li><a href="#4-2-4-%E8%A8%82%E8%AE%8A%E5%96%AE%E6%AA%94%E6%A1%88%E4%B8%8A%E5%82%B3%E6%B5%81%E7%A8%8B%E6%96%B0%E5%A2%9E%E8%A8%82%E8%AE%8A%E5%96%AE">4-2-4. 訂變單檔案上傳流程(新增訂變單)</a></li>
+<li><a href="#4-2-5-%E8%A8%82%E8%AE%8A%E5%96%AE%E6%AA%94%E6%A1%88%E4%B8%8A%E5%82%B3%E6%B5%81%E7%A8%8B%E5%B7%B2%E5%BB%BA%E7%AB%8B%E8%A8%82%E8%AE%8A%E5%96%AE">4-2-5. 訂變單檔案上傳流程(已建立訂變單)</a></li>
+</ul>
+</li>
+<li><a href="#4-3-bpm%E7%B3%BB%E7%B5%B1%E6%95%B4%E5%90%88%E6%B5%81%E7%A8%8B">4-3. BPM系統整合流程</a>
+<ul>
+<li><a href="#4-3-1-%E8%AA%BF%E6%95%B4bpm%E8%A8%82%E5%96%AE%E7%94%B3%E8%AB%8Bapi">4-3-1. 調整BPM訂單申請API</a></li>
+<li><a href="#4-3-2-%E8%AA%BF%E6%95%B4bpm%E8%A8%82%E8%AE%8A%E5%96%AE%E7%94%B3%E8%AB%8Bapi">4-3-2. 調整BPM訂變單申請API</a></li>
+</ul>
+</li>
+<li><a href="#4-4-%E5%AE%9A%E6%99%82%E6%B8%85%E7%90%86%E6%A9%9F%E5%88%B6">4-4. 定時清理機制</a></li>
+</ul>
+</li>
+<li><a href="#5-%E6%8A%80%E8%A1%93%E6%9E%B6%E6%A7%8B%E8%A8%AD%E8%A8%88">5. 技術架構設計</a>
+<ul>
+<li><a href="#5-1-%E6%A0%B8%E5%BF%83%E7%B5%84%E4%BB%B6%E8%A8%AD%E8%A8%88">5-1. 核心組件設計</a>
+<ul>
+<li><a href="#5-1-1-filecontroller">5-1-1. FileController</a></li>
+<li><a href="#5-1-2-orderfilecontroller">5-1-2. OrderFileController</a></li>
+<li><a href="#5-1-3-ordermodifyfilecontroller">5-1-3. OrderModifyFileController</a></li>
+<li><a href="#5-1-4-fileservice">5-1-4. FileService</a></li>
+<li><a href="#5-1-5-filereadrs">5-1-5. FileReadRs</a></li>
+<li><a href="#5-1-6-ordercontroller">5-1-6. OrderController</a></li>
+<li><a href="#5-1-7-orderservice">5-1-7. OrderService</a></li>
+<li><a href="#5-1-8-ordermodifycontroller">5-1-8. OrderModifyController</a></li>
+<li><a href="#5-1-9-ordermodifyservice">5-1-9. OrderModifyService</a></li>
+<li><a href="#5-1-10-restservice">5-1-10. RestService</a></li>
+</ul>
+</li>
+<li><a href="#5-2-api-%E8%AB%8B%E6%B1%82%E8%88%87%E9%9F%BF%E6%87%89%E7%AF%84%E4%BE%8B">5-2. API 請求與響應範例</a>
+<ul>
+<li><a href="#5-2-1-%E8%A8%82%E5%96%AE%E4%B8%8A%E5%82%B3%E6%AA%94%E6%A1%88api%E7%AF%84%E4%BE%8B">5-2-1. 訂單上傳檔案API範例</a></li>
+<li><a href="#5-2-2-%E8%A8%82%E8%AE%8A%E5%96%AE%E4%B8%8A%E5%82%B3%E6%AA%94%E6%A1%88api%E7%AF%84%E4%BE%8B">5-2-2. 訂變單上傳檔案API範例</a></li>
+<li><a href="#5-2-3-%E4%B8%8A%E5%82%B3%E4%BA%8B%E4%BB%B6api%E7%AF%84%E4%BE%8B">5-2-3. 上傳事件API範例</a></li>
+<li><a href="#5-2-4-%E6%96%B0%E5%A2%9E%E8%A8%82%E5%96%AEapi%E7%AF%84%E4%BE%8B">5-2-4. 新增訂單API範例</a></li>
+<li><a href="#5-2-5-%E6%96%B0%E5%A2%9E%E8%A8%82%E8%AE%8A%E5%96%AEapi%E7%AF%84%E4%BE%8B">5-2-5. 新增訂變單API範例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="1-需求">1. 需求 </h2>
+<blockquote>
+<p>因BPM需看到CMP訂單的附加檔案，在CMP進行BPM送審時需上傳檔案至BPM。</p>
+<ol>
+<li>單一檔案大小限制5MB，檔案數量上限為10</li>
+<li>可上傳的檔案類型包含.pdf、.xlsx、.xls、.doc、.docx、.txt、.jpeg、.jpg、.png、.eml、.msg</li>
+<li>訂單和訂變單的檔案分開上傳</li>
+<li>訂變單上傳的檔案，在BPM送簽後不可新增及刪除</li>
+<li>訂單的檔案數量在排程下單前不可超過10個，訂變單的檔案數量不可超過10個</li>
+<li>新增訂單、訂變單時，需透過上傳事件暫存檔案，待訂單、訂變單產生時，將檔案移至該單所屬的附檔資料夾</li>
+</ol>
+</blockquote>
+<hr>
+<h2 id="2-變更項目總覽">2. 變更項目總覽 </h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">編號</th>
+<th style="text-align:left">變更項目</th>
+<th style="text-align:left">變更原因說明</th>
+<th style="text-align:left">影響範圍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>1</strong></td>
+<td style="text-align:left">刪除現有的檔案控制器</td>
+<td style="text-align:left">現有控制器無法適應BPM系統對附件上傳的特定需求</td>
+<td style="text-align:left">- 移除 <code>FileController.java</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>2</strong></td>
+<td style="text-align:left">新增訂單、訂變單專用的檔案控制器</td>
+<td style="text-align:left">上傳檔案的主要功能整合至<code>FileService.java</code>，並依照訂單、訂變單各自的需求建立控制器</td>
+<td style="text-align:left">- 新增 <code>OrderFileController.java</code><br> - 新增 <code>OrderModifyFileController.java</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>3</strong></td>
+<td style="text-align:left">新增檔案讀取回應模型</td>
+<td style="text-align:left">檔案傳輸需要標準化的回應模型，以確保系統間資訊交換一致性</td>
+<td style="text-align:left">- 新增 <code>FileReadRs.java</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>4</strong></td>
+<td style="text-align:left">優化檔案整合服務</td>
+<td style="text-align:left">保留現有上傳功能，並新增「上傳事件」功能，可事先上傳檔案至暫存區</td>
+<td style="text-align:left">- 修改 <code>FileService.java</code><br> - 新增上傳事件功能</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>5</strong></td>
+<td style="text-align:left">附件類型檢查機制</td>
+<td style="text-align:left">檔案類型必須受到嚴格控制，避免惡意檔案進入系統造成資安風險</td>
+<td style="text-align:left">- 實現附件白名單檔案類型驗證</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>6</strong></td>
+<td style="text-align:left">BPM訂單申請、訂變單申請API調整</td>
+<td style="text-align:left">請求格式需改為FormData，並同時發送檔案及訂單資訊</td>
+<td style="text-align:left">- 修改 <code>RestService.java</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-資料結構與類別設計調整">3. 資料結構與類別設計調整 </h2>
+<h3 id="3-1-filereadrs-類別設計---取得附加檔案列表的api回應">3-1. FileReadRs 類別設計 - 取得附加檔案列表的API回應 </h3>
+<h4 id="3-1-1-類別欄位">3-1-1. 類別欄位 </h4>
+<pre data-role="codeBlock" data-info="plaintext" class="language-plaintext plaintext"><code>+-----------------------------------------+
+|               FileReadRs                |
++-----------------------------------------+
+| - id: String                            |
+| - fileName: String                      |
+| - createDate: Date                      |
++-----------------------------------------+
+| + getId(): String                       |
+| + setId(id: String): void               |
+| + getFileName(): String                 |
+| + setFileName(fileName: String): void   |
+| + getCreateDate(): Date                 |
+| + setCreateDate(createDate: Date): void |
++-----------------------------------------+
+</code></pre><h4 id="3-1-2-類別說明">3-1-2. 類別說明 </h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">欄位名稱</th>
+<th style="text-align:center">型別</th>
+<th style="text-align:left">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>id</strong></td>
+<td style="text-align:center">String</td>
+<td style="text-align:left">檔案編碼ID（JWT編碼後的檔案路徑）</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>fileName</strong></td>
+<td style="text-align:center">String</td>
+<td style="text-align:left">檔案名稱</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>createDate</strong></td>
+<td style="text-align:center">Date</td>
+<td style="text-align:left">檔案建立日期</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-功能實現詳述">4. 功能實現詳述 </h2>
+<h3 id="4-1-上傳事件機制">4-1. 上傳事件機制 </h3>
+<p>上傳事件機制提供了一種臨時存儲檔案的方式，直到這些檔案與訂單或訂變單關聯：</p>
+<ol>
+<li>
+<p><strong>事件生成</strong>：</p>
+<ul>
+<li>前端上傳檔案時，後端生成唯一的上傳事件ID</li>
+<li>ID格式為：<code>{yyyyMMdd}-{randomString}</code></li>
+</ul>
+</li>
+<li>
+<p><strong>臨時存儲</strong>：</p>
+<ul>
+<li>檔案存儲在臨時目錄</li>
+<li>設置過期時間，過期後自動清理</li>
+</ul>
+</li>
+<li>
+<p><strong>事件關聯</strong>：</p>
+<ul>
+<li>創建訂單或訂變單時，通過傳入eventId關聯上傳事件</li>
+<li>系統將臨時檔案移動到訂單或訂變單的附件目錄</li>
+</ul>
+</li>
+<li>
+<p><strong>事件清理</strong>：</p>
+<ul>
+<li>定時清理過期的上傳事件檔案</li>
+</ul>
+</li>
+</ol>
+<h3 id="4-2-檔案上傳流程">4-2. 檔案上傳流程 </h3>
+<h4 id="4-2-1-上傳事件">4-2-1. 上傳事件 </h4>
+<p>FileService的上傳事件機制負責臨時存儲檔案，直到這些檔案與訂單或訂變單關聯：</p>
+<p><strong>核心方法：createUploadEvent</strong></p>
+<p><strong>輸入參數：</strong></p>
+<ul>
+<li><code>MultipartFile[] files</code>：要上傳的檔案陣列</li>
+<li><code>String userId</code>：使用者ID（用於權限控制）</li>
+</ul>
+<p><strong>處理邏輯：</strong></p>
+<ol>
+<li>生成唯一的上傳事件ID：<code>{yyyyMMdd}-{randomString}</code></li>
+<li>建立臨時存儲目錄：<code>/root/temp/{eventId}/</code></li>
+<li>執行檔案類型驗證（白名單檢查）</li>
+<li>檢查檔案大小限制（單檔5MB，不可超過10個檔案）</li>
+<li>將檔案儲存至臨時目錄</li>
+<li>返回事件ID供後續使用</li>
+</ol>
+<p><strong>錯誤處理：</strong></p>
+<ul>
+<li>檔案類型不符：拋出 InvalidFileTypeException</li>
+<li>檔案大小超限：拋出 FileSizeExceededException</li>
+<li>檔案數量超限：拋出 FileLimitExceededException</li>
+</ul>
+<p><strong>上傳事件流程圖：</strong></p>
+<div class="mermaid">sequenceDiagram
+    participant 前端 as Frontend
+    participant FileCtrl as OrderFileController
+    participant Service as FileService
+
+    前端-&gt;&gt;FileCtrl: 建立上傳事件(POST /uploadEvent)
+    FileCtrl-&gt;&gt;Service: createUploadEvent(files, userId)
+    Service-&gt;&gt;Service: 生成事件ID
+    Service-&gt;&gt;Service: 驗證檔案類型和大小
+    Service-&gt;&gt;Service: 儲存至臨時目錄
+    Service--&gt;&gt;FileCtrl: 返回eventId
+    FileCtrl--&gt;&gt;前端: 返回eventId
+</div><h4 id="4-2-2-訂單檔案上傳流程新增訂單">4-2-2. 訂單檔案上傳流程(新增訂單) </h4>
+<p><strong>核心方法：createOrder</strong></p>
+<p><strong>輸入參數：</strong></p>
+<ul>
+<li><code>UserItemRs userInfo</code>：使用者資訊</li>
+<li><code>OrderHeaderRq orderHeaderRq</code>：訂單單頭請求</li>
+<li><code>List&lt;OrderDetailRq&gt; orderDetailRqList</code>：訂單單身請求</li>
+</ul>
+<p><strong>處理邏輯：</strong></p>
+<ol>
+<li>驗證使用者權限和訂單資料</li>
+<li>建立訂單主體資料</li>
+<li>檢查是否包含上傳事件ID</li>
+<li>呼叫FileService.moveUploadEventFiles移轉檔案</li>
+<li>將檔案從臨時目錄移至訂單目錄</li>
+<li>清理臨時事件資料</li>
+<li>返回訂單建立結果</li>
+</ol>
+<p><strong>流程說明：</strong><br>
+針對新建立的訂單，使用上傳事件機制先暫存檔案，待訂單建立完成後移轉檔案。</p>
+<div class="mermaid">sequenceDiagram
+    participant 前端 as Frontend
+    participant OrderCtrl as OrderController
+    participant Service as FileService
+    participant OrderSvc as OrderService
+
+    前端-&gt;&gt;OrderCtrl: 儲存/送簽訂單(POST /order 含uploadEventIds)
+    OrderCtrl-&gt;&gt;OrderSvc: createOrder(orderRq)
+    OrderSvc-&gt;&gt;Service: moveUploadEventFiles(eventId, targetPath)
+    Service-&gt;&gt;Service: 移動檔案至訂單目錄
+    Service-&gt;&gt;Service: 清理臨時事件
+    Service--&gt;&gt;OrderSvc: 處理完成
+    OrderSvc--&gt;&gt;OrderCtrl: 返回處理結果
+    OrderCtrl--&gt;&gt;前端: 返回建立成功
+</div><h4 id="4-2-3-訂單檔案上傳流程已建立訂單">4-2-3. 訂單檔案上傳流程(已建立訂單) </h4>
+<p><strong>輸入參數：</strong></p>
+<ul>
+<li><code>String orderId</code>：訂單ID</li>
+<li><code>String orderDetailId</code>：訂單單身ID</li>
+<li><code>MultipartFile[] files</code>：要上傳的檔案陣列</li>
+<li><code>String userId</code>：使用者ID</li>
+<li><code>String roleId</code>：角色ID</li>
+</ul>
+<p><strong>處理邏輯：</strong></p>
+<ol>
+<li>驗證使用者權限</li>
+<li>進行檔案驗證和儲存</li>
+<li>返回處理結果</li>
+</ol>
+<p><strong>流程說明：</strong><br>
+針對已存在的訂單，直接上傳檔案至訂單的附件目錄，無需上傳事件機制。</p>
+<div class="mermaid">sequenceDiagram
+    participant 前端 as Frontend
+    participant Controller as OrderFileController
+    participant Service as FileService
+
+    前端-&gt;&gt;Controller: 上傳檔案(POST /orders/{id}/files)
+    Controller-&gt;&gt;Controller: 驗證使用者權限
+    Controller-&gt;&gt;Controller: 檢查訂單存在性
+    Controller-&gt;&gt;Service: uploadFiles(files, targetPath)
+    Service-&gt;&gt;Service: 驗證檔案類型和大小
+    Service-&gt;&gt;Service: 儲存至訂單目錄
+    Service--&gt;&gt;Controller: 處理完成
+    Controller-&gt;&gt;Controller: 記錄操作日誌
+    Controller--&gt;&gt;前端: 返回上傳成功
+</div><h4 id="4-2-4-訂變單檔案上傳流程新增訂變單">4-2-4. 訂變單檔案上傳流程(新增訂變單) </h4>
+<p><strong>核心方法：createOrderModify</strong></p>
+<p><strong>輸入參數：</strong></p>
+<ul>
+<li><code>String orderId</code>：訂單ID</li>
+<li><code>String sub</code>：使用者ID</li>
+<li><code>String role</code>：角色ID</li>
+<li><code>OrderModifyRq orderModifyRq</code>：訂變單請求</li>
+</ul>
+<p><strong>處理邏輯：</strong></p>
+<ol>
+<li>驗證使用者權限和訂變單資料</li>
+<li>建立訂變單主體資料</li>
+<li>檢查是否包含上傳事件ID</li>
+<li>呼叫FileService.moveUploadEventFiles移轉檔案</li>
+<li>將檔案從臨時目錄移至訂單目錄</li>
+<li>清理臨時事件資料</li>
+<li>返回訂變單建立結果</li>
+</ol>
+<p><strong>流程說明：</strong><br>
+針對新建立的訂變單，在已建立上傳事件的基礎上，處理訂變單建立並移轉檔案。檔案上傳流程請參考4-2-1節。</p>
+<div class="mermaid">sequenceDiagram
+    participant 前端 as Frontend
+    participant ModifyCtrl as OrderModifyController
+    participant ModifySvc as OrderModifyService
+    participant Service as FileService
+
+    前端-&gt;&gt;ModifyCtrl: 儲存/送簽訂變單(POST /modify/{orderId} 含uploadEventIds)
+    ModifyCtrl-&gt;&gt;ModifySvc: createOrderModify(modifyRq)
+    ModifySvc-&gt;&gt;Service: moveUploadEventFiles(eventId, targetPath)
+    Service-&gt;&gt;Service: 移動檔案至訂變單目錄
+    Service-&gt;&gt;Service: 清理臨時事件
+    Service--&gt;&gt;ModifySvc: 處理完成
+    ModifySvc--&gt;&gt;ModifyCtrl: 返回處理結果
+    ModifyCtrl--&gt;&gt;前端: 返回建立成功
+</div><h4 id="4-2-5-訂變單檔案上傳流程已建立訂變單">4-2-5. 訂變單檔案上傳流程(已建立訂變單) </h4>
+<p><strong>輸入參數：</strong></p>
+<ul>
+<li><code>String modifyId</code>：訂變單ID</li>
+<li><code>MultipartFile[] files</code>：要上傳的檔案陣列</li>
+<li><code>String userId</code>：使用者ID</li>
+<li><code>String roleId</code>：角色ID</li>
+</ul>
+<p><strong>處理邏輯：</strong></p>
+<ol>
+<li>驗證使用者權限</li>
+<li>進行檔案驗證和儲存</li>
+<li>返回處理結果</li>
+</ol>
+<p><strong>流程說明：</strong><br>
+針對已存在的訂變單，直接上傳檔案至訂變單的附件目錄，需考慮BPM審核狀態限制。</p>
+<div class="mermaid">sequenceDiagram
+    participant 前端 as Frontend
+    participant Controller as OrderModifyFileController
+    participant Service as FileService
+
+    前端-&gt;&gt;Controller: 上傳檔案(POST /modify/{id}/files)
+    Controller-&gt;&gt;Controller: 驗證使用者權限
+    Controller-&gt;&gt;Controller: 檢查訂變單存在性
+    Controller-&gt;&gt;Controller: 檢查BPM審核狀態
+    Controller-&gt;&gt;Service: uploadFiles(files, targetPath)
+    Service-&gt;&gt;Service: 驗證檔案類型和大小
+    Service-&gt;&gt;Service: 儲存至訂變單目錄
+    Service--&gt;&gt;Controller: 處理完成
+    Controller-&gt;&gt;Controller: 記錄操作日誌
+    Controller--&gt;&gt;前端: 返回上傳成功
+</div><h3 id="4-3-bpm系統整合流程">4-3. BPM系統整合流程 </h3>
+<h4 id="4-3-1-調整bpm訂單申請api">4-3-1. 調整BPM訂單申請API </h4>
+<p>RestService的createOrderBpm方法負責將訂單資料和附件上傳至BPM系統，該方法的核心特性：</p>
+<p><strong>輸入參數：</strong></p>
+<ul>
+<li><code>OrderBpmRq orderBpmRq</code>：包含訂單的所有業務資訊</li>
+<li><code>List&lt;File&gt; files</code>：要上傳至BPM的附件檔案清單</li>
+</ul>
+<p><strong>處理邏輯：</strong></p>
+<ol>
+<li>設定HTTP Headers為MULTIPART_FORM_DATA類型</li>
+<li>建立MultiValueMap來組裝form-data</li>
+<li>將檔案轉換為FileSystemResource並加入form-data</li>
+<li>將訂單資料加入FormData欄位</li>
+<li>呼叫BPM API：<code>/Custom/BuildForm/SYSAGEFORMC001</code></li>
+<li>解析回應並返回BPM單號</li>
+</ol>
+<div class="mermaid">sequenceDiagram
+    participant OrderSvc as OrderService
+    participant RestSvc as RestService
+    participant BPM as BPM系統
+    participant Mongo as MongoDB
+    
+    OrderSvc-&gt;&gt;RestSvc: createOrderBpm(orderBpmRq, files)
+    RestSvc-&gt;&gt;RestSvc: 設定HTTP Headers
+    RestSvc-&gt;&gt;RestSvc: 建立MultiValueMap
+    
+    alt 有附件檔案
+        loop 處理每個檔案
+            RestSvc-&gt;&gt;RestSvc: 轉換File為FileSystemResource
+            RestSvc-&gt;&gt;RestSvc: 加入formData
+        end
+    end
+    
+    RestSvc-&gt;&gt;RestSvc: 加入訂單資料到FormData
+    RestSvc-&gt;&gt;BPM: POST /Custom/BuildForm/SYSAGEFORMC001
+    
+    alt BPM處理成功
+        BPM--&gt;&gt;RestSvc: HTTP 200 + BPM回應
+        RestSvc-&gt;&gt;Mongo: 記錄API呼叫歷史(成功)
+        RestSvc-&gt;&gt;RestSvc: 驗證success=true
+        RestSvc-&gt;&gt;RestSvc: 提取bpmNumber
+        RestSvc--&gt;&gt;OrderSvc: 返回BPM單號
+    else BPM處理失敗
+        BPM--&gt;&gt;RestSvc: HTTP錯誤碼 + 錯誤訊息
+        RestSvc-&gt;&gt;Mongo: 記錄API呼叫歷史(失敗)
+        RestSvc--&gt;&gt;OrderSvc: 拋出例外
+    end
+</div><h4 id="4-3-2-調整bpm訂變單申請api">4-3-2. 調整BPM訂變單申請API </h4>
+<p>RestService的createOrderModifyBpm方法負責將訂變單資料和附件上傳至BPM系統，該方法與createOrderBpm方法結構相似但針對訂變單業務需求進行調整：</p>
+<p><strong>輸入參數：</strong></p>
+<ul>
+<li><code>OrderModifyBpmRq orderModifyBpmRq</code>：包含訂變單的所有業務資訊</li>
+<li><code>List&lt;File&gt; files</code>：要上傳至BPM的附件檔案清單</li>
+</ul>
+<p><strong>處理邏輯：</strong></p>
+<ol>
+<li>設定HTTP Headers為MULTIPART_FORM_DATA類型</li>
+<li>建立MultiValueMap來組裝form-data</li>
+<li>將檔案轉換為FileSystemResource並加入form-data</li>
+<li>將訂變單資料加入FormData欄位</li>
+<li>呼叫BPM API：<code>/Custom/BuildForm/SYSAGEFORMC002</code>（注意：與訂單API不同）</li>
+<li>記錄第三方API呼叫歷史</li>
+<li>解析回應並返回BPM單號</li>
+</ol>
+<div class="mermaid">sequenceDiagram
+    participant ModifySvc as OrderModifyService
+    participant RestSvc as RestService
+    participant BPM as BPM系統
+    participant Mongo as MongoDB
+    
+    ModifySvc-&gt;&gt;RestSvc: createOrderModifyBpm(orderModifyBpmRq, files)
+    RestSvc-&gt;&gt;RestSvc: 設定HTTP Headers
+    RestSvc-&gt;&gt;RestSvc: 建立MultiValueMap
+    
+    alt 有附件檔案
+        loop 處理每個檔案
+            RestSvc-&gt;&gt;RestSvc: 轉換File為FileSystemResource
+            RestSvc-&gt;&gt;RestSvc: 加入formData
+        end
+    end
+    
+    RestSvc-&gt;&gt;RestSvc: 加入訂變單資料到FormData
+    RestSvc-&gt;&gt;BPM: POST /Custom/BuildForm/SYSAGEFORMC002
+    
+    alt BPM處理成功
+        BPM--&gt;&gt;RestSvc: HTTP 200 + BPM回應
+        RestSvc-&gt;&gt;Mongo: 記錄API呼叫歷史(成功)
+        RestSvc-&gt;&gt;RestSvc: 驗證success=true
+        RestSvc-&gt;&gt;RestSvc: 提取bpmNumber
+        RestSvc--&gt;&gt;ModifySvc: 返回BPM單號
+    else BPM處理失敗
+        BPM--&gt;&gt;RestSvc: HTTP錯誤碼 + 錯誤訊息
+        RestSvc-&gt;&gt;Mongo: 記錄API呼叫歷史(失敗)
+        RestSvc--&gt;&gt;ModifySvc: 拋出例外
+    end
+</div><h3 id="4-4-定時清理機制">4-4. 定時清理機制 </h3>
+<p>為確保系統儲存空間的有效利用，需要定期清理過期的上傳事件檔案和暫存檔案。</p>
+<h4 id="4-4-1-清理策略">4-4-1. 清理策略 </h4>
+<p><strong>清理條件：</strong></p>
+<ul>
+<li>檔案建立時間超過設定的保留期限（預設：1天）</li>
+<li>未被任何訂單或訂變單關聯的暫存檔案</li>
+</ul>
+<h4 id="4-4-2-k8s-cronjob">4-4-2. K8s CronJob </h4>
+<p><strong>清理腳本說明：</strong></p>
+<ol>
+<li><strong>清理週期</strong>：每日凌0點執行，避免影響業務高峰期</li>
+<li><strong>保留期限</strong>：檔案建立超過1天後自動清理</li>
+<li><strong>清理範圍</strong>：
+<ul>
+<li>刪除過期檔案</li>
+<li>清理空資料夾</li>
+</ul>
+</li>
+</ol>
+<h2 id="5-技術架構設計">5. 技術架構設計 </h2>
+<h3 id="5-1-核心組件設計">5-1. 核心組件設計 </h3>
+<h4 id="5-1-1-filecontroller">5-1-1. FileController </h4>
+<p><strong>移除說明：</strong></p>
+<p>FileController 已從系統中移除，該控制器原本負責處理檔案的基本操作。</p>
+<p><strong>已移除的功能：</strong></p>
+<ol>
+<li><strong>壓縮下載訂購證明API</strong> - 此功能已完全刪除，不再提供批次下載功能</li>
+<li><strong>取得採購單附加檔案列表API</strong> - 已遷移至 <code>OrderFileController</code></li>
+<li><strong>上傳檔案（已建立訂單）API</strong> - 已遷移至 <code>OrderFileController</code></li>
+<li><strong>下載檔案API</strong> - 已遷移至 <code>OrderFileController</code></li>
+</ol>
+<p><strong>功能遷移對應：</strong></p>
+<ul>
+<li>原有的訂單相關檔案操作功能已全數遷移至 <code>OrderFileController</code></li>
+<li>檔案服務的核心邏輯保留在 <code>FileService</code> 中，提供統一的底層支援</li>
+</ul>
+<p><strong>架構調整說明：</strong><br>
+為了更好地支援BPM系統整合，檔案控制器被重新設計為專用控制器模式，分別處理訂單和訂變單的檔案操作，以確保功能邊界清晰且符合業務需求。</p>
+<h4 id="5-1-2-orderfilecontroller">5-1-2. OrderFileController </h4>
+<p>訂單檔案專用控制器，處理與訂單相關的檔案操作。</p>
+<p><strong>路徑：</strong> <code>/orders/{orderId}/orderDetails/{orderDetailId}/files</code></p>
+<p><strong>核心方法與實作邏輯：</strong></p>
+<h5 id="1-取得訂單附件列表api">1. 取得訂單附件列表API </h5>
+<p><strong>HTTP Method：</strong> <code>GET</code> <br><br>
+<strong>路徑：</strong> <code>/orders/{orderId}/orderDetails/{orderDetailId}/files</code><br>
+<strong>輸入參數：</strong></p>
+<ul>
+<li><code>@PathVariable String orderId</code>：訂單ID</li>
+<li><code>@PathVariable String orderDetailId</code>：訂單單身ID</li>
+<li><code>@RequestHeader("Sub") String userId</code>：使用者ID</li>
+<li><code>@RequestHeader("Role") String roleId</code>：角色ID</li>
+</ul>
+<p><strong>輸出參數：</strong></p>
+<ul>
+<li><code>ResponseEntity&lt;RsBody&lt;List&lt;FileReadRs&gt;&gt;&gt;</code>：包含檔案列表的響應物件</li>
+</ul>
+<p><strong>實作邏輯：</strong></p>
+<ul>
+<li>驗證使用者權限與訂單存取權限</li>
+<li>呼叫FileService.getFileList獲取檔案清單</li>
+<li>返回FileReadRs列表格式的響應</li>
+</ul>
+<h5 id="2-上傳訂單附件api">2. 上傳訂單附件API </h5>
+<p><strong>HTTP Method：</strong> <code>POST</code> <br><br>
+<strong>路徑：</strong> <code>/orders/{orderId}/orderDetails/{orderDetailId}/files</code><br>
+<strong>輸入參數：</strong></p>
+<ul>
+<li><code>@PathVariable String orderId</code>：訂單ID</li>
+<li><code>@PathVariable String orderDetailId</code>：訂單單身ID</li>
+<li><code>@RequestParam("files") MultipartFile[] files</code>：上傳檔案陣列</li>
+<li><code>@RequestParam(value = "orderProducts", required = false) String orderProducts</code>：商品資訊（選填）</li>
+<li><code>@RequestHeader("Sub") String userId</code>：使用者ID</li>
+<li><code>@RequestHeader("Role") String roleId</code>：角色ID</li>
+</ul>
+<p><strong>輸出參數：</strong></p>
+<ul>
+<li><code>ResponseEntity&lt;RsBody&lt;Void&gt;&gt;</code>：上傳結果響應物件</li>
+</ul>
+<p><strong>實作邏輯：</strong></p>
+<ul>
+<li>驗證使用者權限與訂單操作權限</li>
+<li>呼叫FileService.uploadFiles執行檔案儲存</li>
+<li>返回處理結果</li>
+</ul>
+<h5 id="3-下載訂單附件api">3. 下載訂單附件API </h5>
+<p><strong>HTTP Method：</strong> <code>GET</code> <br><br>
+<strong>路徑：</strong> <code>/orders/{orderId}/orderDetails/{orderDetailId}/file</code><br>
+<strong>輸入參數：</strong></p>
+<ul>
+<li><code>@PathVariable String orderId</code>：訂單ID</li>
+<li><code>@PathVariable String orderDetailId</code>：訂單單身ID</li>
+<li><code>@RequestParam("id") String fileId</code>：檔案編碼ID</li>
+</ul>
+<p><strong>輸出參數：</strong></p>
+<ul>
+<li><code>ResponseEntity&lt;InputStreamResource&gt;</code>：檔案串流響應物件</li>
+</ul>
+<p><strong>實作邏輯：</strong></p>
+<ul>
+<li>驗證檔案存取權限</li>
+<li>呼叫FileService.downloadFile處理檔案下載</li>
+<li>返回檔案串流響應</li>
+</ul>
+<h5 id="4-刪除訂單附件api">4. 刪除訂單附件API </h5>
+<p><strong>HTTP Method：</strong> <code>DELETE</code><br><br>
+<strong>路徑：</strong> <code>/orders/{orderId}/orderDetails/{orderDetailId}/file</code><br>
+<strong>輸入參數：</strong></p>
+<ul>
+<li><code>@PathVariable String orderId</code>：訂單ID</li>
+<li><code>@PathVariable String orderDetailId</code>：訂單單身ID</li>
+<li><code>@RequestParam("id") String fileId</code>：檔案編碼ID</li>
+<li><code>@RequestHeader("Sub") String userId</code>：使用者ID</li>
+<li><code>@RequestHeader("Role") String roleId</code>：角色ID</li>
+</ul>
+<p><strong>輸出參數：</strong></p>
+<ul>
+<li><code>ResponseEntity&lt;RsBody&lt;Void&gt;&gt;</code>：刪除結果響應物件</li>
+</ul>
+<p><strong>實作邏輯：</strong></p>
+<ul>
+<li>驗證使用者權限與刪除操作權限</li>
+<li>呼叫FileService.deleteFile執行刪除操作</li>
+<li>返回處理結果</li>
+</ul>
+<h5 id="5-建立上傳事件api">5. 建立上傳事件API </h5>
+<p><strong>HTTP Method：</strong> <code>POST</code><br><br>
+<strong>路徑：</strong> <code>/orders/uploadEvent</code><br>
+<strong>輸入參數：</strong></p>
+<ul>
+<li><code>@RequestParam("files") MultipartFile[] files</code>：上傳檔案陣列</li>
+</ul>
+<p><strong>輸出參數：</strong></p>
+<ul>
+<li><code>ResponseEntity&lt;RsBody&lt;String&gt;&gt;</code>：包含事件ID的響應物件</li>
+</ul>
+<p><strong>實作邏輯：</strong></p>
+<ul>
+<li>接收前端上傳的檔案陣列</li>
+<li>呼叫FileService.createUploadEvent建立暫存事件</li>
+<li>返回生成的事件ID供後續訂單建立時使用</li>
+</ul>
+<h5 id="6-刪除上傳事件檔案api">6. 刪除上傳事件檔案API </h5>
+<p><strong>HTTP Method：</strong> <code>DELETE</code><br><br>
+<strong>路徑：</strong> <code>/orders/uploadEvent/{eventId}/{fileName}</code><br>
+<strong>輸入參數：</strong></p>
+<ul>
+<li><code>@PathVariable String eventId</code>：上傳事件ID</li>
+<li><code>@PathVariable String fileName</code>：檔案名稱</li>
+</ul>
+<p><strong>輸出參數：</strong></p>
+<ul>
+<li><code>ResponseEntity&lt;RsBody&lt;Void&gt;&gt;</code>：刪除結果響應物件</li>
+</ul>
+<p><strong>實作邏輯：</strong></p>
+<ul>
+<li>驗證事件ID與檔案名稱</li>
+<li>呼叫fileService.deleteFile執行刪除</li>
+<li>返回處理結果</li>
+</ul>
+<h4 id="5-1-3-ordermodifyfilecontroller">5-1-3. OrderModifyFileController </h4>
+<p>訂變單檔案專用控制器，處理與訂變單相關的檔案操作。</p>
+<p><strong>路徑：</strong> <code>/order/modify/{orderModifyId}</code></p>
+<p><strong>核心方法與實作邏輯：</strong></p>
+<h5 id="1-取得訂變單附件列表api">1. 取得訂變單附件列表API </h5>
+<p><strong>HTTP Method：</strong> <code>GET</code> <br><br>
+<strong>路徑：</strong> <code>/order/modify/{orderModifyId}/files</code><br>
+<strong>輸入參數：</strong></p>
+<ul>
+<li><code>@PathVariable String orderModifyId</code>：訂變單ID</li>
+<li><code>@RequestHeader("Sub") String userId</code>：使用者ID</li>
+<li><code>@RequestHeader("Role") String roleId</code>：角色ID</li>
+</ul>
+<p><strong>輸出參數：</strong></p>
+<ul>
+<li><code>ResponseEntity&lt;RsBody&lt;List&lt;FileReadRs&gt;&gt;&gt;</code>：包含檔案列表的響應物件</li>
+</ul>
+<p><strong>實作邏輯：</strong></p>
+<ul>
+<li>驗證使用者權限與訂變單存取權限</li>
+<li>呼叫FileService.getFileList獲取檔案清單</li>
+<li>返回FileReadRs列表格式的響應</li>
+</ul>
+<h5 id="2-上傳訂變單附件api">2. 上傳訂變單附件API </h5>
+<p><strong>HTTP Method：</strong> <code>POST</code><br><br>
+<strong>路徑：</strong> <code>/order/modify/{orderModifyId}/files</code><br>
+<strong>輸入參數：</strong></p>
+<ul>
+<li><code>@PathVariable String orderModifyId</code>：訂變單ID</li>
+<li><code>@RequestParam("files") MultipartFile[] files</code>：上傳檔案陣列</li>
+<li><code>@RequestHeader("Sub") String userId</code>：使用者ID</li>
+<li><code>@RequestHeader("Role") String roleId</code>：角色ID</li>
+</ul>
+<p><strong>輸出參數：</strong></p>
+<ul>
+<li><code>ResponseEntity&lt;RsBody&lt;Void&gt;&gt;</code>：上傳結果響應物件</li>
+</ul>
+<p><strong>實作邏輯：</strong></p>
+<ul>
+<li>驗證使用者權限與訂變單操作權限</li>
+<li>呼叫FileService.uploadFiles執行檔案儲存</li>
+<li>返回處理結果</li>
+</ul>
+<h5 id="3-下載訂變單附件api">3. 下載訂變單附件API </h5>
+<p><strong>HTTP Method：</strong> <code>GET</code><br><br>
+<strong>路徑：</strong> <code>/order/modify/file</code><br>
+<strong>輸入參數：</strong></p>
+<ul>
+<li><code>@PathVariable String orderModifyId</code>：訂變單ID</li>
+<li><code>@RequestParam("id") String fileId</code>：檔案編碼ID</li>
+</ul>
+<p><strong>輸出參數：</strong></p>
+<ul>
+<li><code>ResponseEntity&lt;InputStreamResource&gt;</code>：檔案串流響應物件</li>
+</ul>
+<p><strong>實作邏輯：</strong></p>
+<ul>
+<li>驗證檔案存取權限</li>
+<li>呼叫FileService.downloadFile處理檔案下載</li>
+<li>返回檔案串流響應</li>
+</ul>
+<h5 id="4-刪除訂變單附件api">4. 刪除訂變單附件API </h5>
+<p><strong>HTTP Method：</strong> <code>DELETE</code><br><br>
+<strong>路徑：</strong> <code>/order/modify/{orderModifyId}/file</code><br>
+<strong>輸入參數：</strong></p>
+<ul>
+<li><code>@PathVariable String orderModifyId</code>：訂變單ID</li>
+<li><code>@RequestParam("id") String fileId</code>：檔案編碼ID</li>
+<li><code>@RequestHeader("Sub") String userId</code>：使用者ID</li>
+<li><code>@RequestHeader("Role") String roleId</code>：角色ID</li>
+</ul>
+<p><strong>輸出參數：</strong></p>
+<ul>
+<li><code>ResponseEntity&lt;RsBody&lt;Void&gt;&gt;</code>：刪除結果響應物件</li>
+</ul>
+<p><strong>實作邏輯：</strong></p>
+<ul>
+<li>驗證使用者權限與刪除操作權限</li>
+<li>呼叫FileService.deleteFile執行刪除操作</li>
+<li>返回處理結果</li>
+</ul>
+<h4 id="5-1-4-fileservice">5-1-4. FileService </h4>
+<p>提供統一的檔案處理服務，為專用控制器提供底層支援。</p>
+<p><strong>主要功能與實作邏輯：</strong></p>
+<h5 id="1-附件專用儲存機制">1. 附件專用儲存機制 </h5>
+<p><strong>核心方法：</strong> <code>uploadFiles</code></p>
+<p><strong>實作邏輯：</strong></p>
+<ul>
+<li>檢查目標目錄現有檔案數量，確保新增後不超過總數限制</li>
+<li>對每個檔案執行以下驗證：
+<ul>
+<li>檔案大小檢查（單檔不超過5MB）</li>
+<li>檔案類型白名單驗證</li>
+</ul>
+</li>
+<li>若目標目錄不存在則自動建立</li>
+<li>將上傳的檔案存放至指定的目錄下</li>
+</ul>
+<h5 id="2-附件獲取">2. 附件獲取 </h5>
+<p><strong>核心方法：</strong> <code>getFileList</code></p>
+<p><strong>實作邏輯：</strong></p>
+<ul>
+<li>檢查指定目錄是否存在，若不存在則返回空列表</li>
+<li>遍歷目錄中的所有一般檔案（排除子目錄）</li>
+<li>為每個檔案建立FileReadRs物件：
+<ul>
+<li>使用JWT工具生成安全的檔案ID（編碼檔案路徑）</li>
+<li>設定檔案名稱</li>
+<li>讀取檔案建立時間</li>
+</ul>
+</li>
+<li>返回完整的檔案資訊列表</li>
+</ul>
+<h5 id="3-附件下載">3. 附件下載 </h5>
+<p><strong>核心方法：</strong> <code>downloadFile</code></p>
+<p><strong>實作邏輯：</strong></p>
+<ul>
+<li>使用JWT工具解析檔案ID獲得實際檔案路徑</li>
+<li>驗證檔案是否存在於系統中</li>
+<li>返回包含檔案串流的ResponseEntity</li>
+</ul>
+<h5 id="4-附件刪除">4. 附件刪除 </h5>
+<p><strong>核心方法：</strong> <code>deleteFile</code></p>
+<p><strong>實作邏輯：</strong></p>
+<ul>
+<li>解析JWT編碼的檔案ID獲得檔案路徑</li>
+<li>檢查檔案是否存在，若不存在則拋出FileNotFoundException</li>
+<li>從檔案系統中實際刪除檔案</li>
+</ul>
+<h5 id="5-附件類型檢查">5. 附件類型檢查 </h5>
+<p><strong>核心方法：</strong> <code>validateFileType</code></p>
+<p><strong>實作邏輯：</strong></p>
+<ul>
+<li>定義允許的檔案類型白名單，包含：
+<ul>
+<li>文件類型：pdf, xlsx, xls, doc, docx, txt</li>
+<li>圖片類型：jpeg, jpg, png</li>
+<li>郵件類型：eml, msg</li>
+</ul>
+</li>
+<li>提取檔案副檔名並轉換為小寫進行比對</li>
+<li>若檔案類型不在白名單中則拋出InvalidFileTypeException</li>
+</ul>
+<h5 id="6-上傳事件追蹤與管理">6. 上傳事件追蹤與管理 </h5>
+<p><strong>核心方法：</strong> <code>createUploadEvent</code> 與 <code>moveUploadEventFiles</code></p>
+<p><strong>建立上傳事件邏輯：</strong></p>
+<ul>
+<li>生成唯一的事件ID，格式為「日期-隨機字串」（如：20250703-abcd1234）</li>
+<li>在臨時目錄建立專屬的事件資料夾</li>
+<li>呼叫uploadFiles方法將檔案儲存至暫存區</li>
+<li>若建立過程失敗則清理已建立的暫存檔案</li>
+</ul>
+<p><strong>移動事件檔案邏輯：</strong></p>
+<ul>
+<li>檢查暫存事件目錄是否存在</li>
+<li>建立目標目錄（如訂單或訂變單的附件目錄）</li>
+<li>將暫存目錄中的所有檔案移動至目標位置</li>
+<li>清理空的暫存目錄</li>
+</ul>
+<h4 id="5-1-5-filereadrs">5-1-5. FileReadRs </h4>
+<p>檔案讀取響應模型，用於返回檔案信息。</p>
+<pre data-role="codeBlock" data-info="plaintext" class="language-plaintext plaintext"><code>FileReadRs
+├── id: String
+├── fileName: String
+└── createDate: Date
+</code></pre><h4 id="5-1-6-ordercontroller">5-1-6. OrderController </h4>
+<p>調整「新增訂單」API，請求增加上傳事件ID。</p>
+<p><strong>路徑：</strong> <code>/order</code></p>
+<h5 id="1-新增訂單整合上傳事件api">1. 新增訂單（整合上傳事件）API </h5>
+<p><strong>HTTP Method：</strong> <code>POST</code><br><br>
+<strong>路徑：</strong> <code>/order</code><br>
+<strong>輸入參數：</strong></p>
+<ul>
+<li><code>@RequestBody CreateOrderRq orderRequest</code>：訂單請求物件（包含uploadEventIds欄位）</li>
+<li><code>@RequestHeader("Sub") String userId</code>：使用者ID</li>
+<li><code>@RequestHeader("Role") String roleId</code>：角色ID</li>
+</ul>
+<p><strong>輸出參數：</strong></p>
+<ul>
+<li><code>ResponseEntity&lt;RsBody&lt;OrderRs&gt;&gt;</code>：包含訂單建立結果的響應物件</li>
+</ul>
+<p><strong>實作邏輯：</strong></p>
+<ul>
+<li>接收包含上傳事件ID的OrderRq請求物件</li>
+<li>驗證使用者權限與請求資料完整性</li>
+<li>呼叫OrderService.createOrder處理訂單建立邏輯</li>
+<li>返回訂單建立結果與訂單ID</li>
+</ul>
+<h4 id="5-1-7-orderservice">5-1-7. OrderService </h4>
+<p>調整「新增訂單」功能，增加綁定上傳事件檔案邏輯。</p>
+<h5 id="1-建立訂單含檔案移轉">1. 建立訂單（含檔案移轉） </h5>
+<p><strong>核心方法：</strong> <code>createOrder</code></p>
+<p><strong>實作邏輯：</strong></p>
+<ul>
+<li>執行原有訂單建立邏輯（驗證、儲存訂單資料）</li>
+<li>檢查請求是否包含上傳事件ID</li>
+<li>若有上傳事件ID：
+<ul>
+<li>呼叫FileService.moveUploadEventFiles移轉檔案</li>
+</ul>
+</li>
+<li>返回處理結果</li>
+</ul>
+<h4 id="5-1-8-ordermodifycontroller">5-1-8. OrderModifyController </h4>
+<p>調整「新增訂變單」API，請求增加上傳事件ID。</p>
+<p><strong>路徑：</strong> <code>/order/modify/{orderId}</code></p>
+<h5 id="1-新增訂變單整合上傳事件api">1. 新增訂變單（整合上傳事件）API </h5>
+<p><strong>HTTP Method：</strong> <code>POST</code> <br><br>
+<strong>路徑：</strong> <code>/order/modify/{orderId}</code><br>
+<strong>輸入參數：</strong></p>
+<ul>
+<li><code>@RequestBody OrderModifyRq orderModifyRequest</code>：訂變單請求物件（包含uploadEventIds欄位）</li>
+<li><code>@RequestHeader("Sub") String userId</code>：使用者ID</li>
+<li><code>@RequestHeader("Role") String roleId</code>：角色ID</li>
+</ul>
+<p><strong>輸出參數：</strong></p>
+<ul>
+<li><code>ResponseEntity&lt;RsBody&lt;OrderModifyRs&gt;&gt;</code>：包含訂變單建立結果的響應物件</li>
+</ul>
+<p><strong>實作邏輯：</strong></p>
+<ul>
+<li>接收包含上傳事件ID的OrderModifyRq請求物件</li>
+<li>驗證使用者權限與原訂單存取權限</li>
+<li>呼叫OrderModifyService.createOrderModify處理訂變單建立邏輯</li>
+<li>返回訂變單建立結果與訂變單ID</li>
+</ul>
+<h4 id="5-1-9-ordermodifyservice">5-1-9. OrderModifyService </h4>
+<p>調整「新增訂變單」功能，增加綁定上傳事件檔案邏輯。</p>
+<h5 id="1-建立訂變單含檔案移轉">1. 建立訂變單（含檔案移轉） </h5>
+<p><strong>方法：</strong> <code>createOrderModify</code><br>
+<strong>實作邏輯：</strong></p>
+<ul>
+<li>執行原有訂變單建立邏輯（驗證、儲存訂變單資料）</li>
+<li>檢查請求是否包含上傳事件ID</li>
+<li>若有上傳事件ID：
+<ul>
+<li>呼叫FileService.moveUploadEventFiles移轉檔案</li>
+</ul>
+</li>
+<li>返回處理結果</li>
+</ul>
+<h4 id="5-1-10-restservice">5-1-10. RestService </h4>
+<p>調整BPM「訂單申請」、「訂變單申請」API，處理檔案上傳至BPM系統。</p>
+<h5 id="1-bpm訂單申請含檔案上傳">1. BPM訂單申請（含檔案上傳） </h5>
+<p><strong>方法：</strong> <code>createOrderBpm</code><br>
+<strong>實作邏輯：</strong></p>
+<ul>
+<li>接收OrderBpmRq訂單資料與檔案清單</li>
+<li>設定HTTP Headers為MULTIPART_FORM_DATA格式</li>
+<li>建立MultiValueMap組裝表單資料：
+<ul>
+<li>將訂單業務資料序列化為JSON並加入表單</li>
+<li>將檔案轉換為FileSystemResource並加入表單</li>
+</ul>
+</li>
+<li>呼叫BPM API端點：<code>/Custom/BuildForm/SYSAGEFORMC001</code></li>
+<li>記錄第三方API呼叫歷史到MongoDB</li>
+<li>解析BPM響應並提取單號</li>
+<li>返回BPM處理結果</li>
+</ul>
+<h5 id="2-bpm訂變單申請含檔案上傳">2. BPM訂變單申請（含檔案上傳） </h5>
+<p><strong>方法：</strong> <code>createOrderModifyBpm</code><br>
+<strong>實作邏輯：</strong></p>
+<ul>
+<li>接收OrderModifyBpmRq訂變單資料與檔案清單</li>
+<li>設定HTTP Headers為MULTIPART_FORM_DATA格式</li>
+<li>建立MultiValueMap組裝表單資料：
+<ul>
+<li>將訂變單業務資料序列化為JSON並加入表單</li>
+<li>將檔案轉換為FileSystemResource並加入表單</li>
+</ul>
+</li>
+<li>呼叫BPM API端點：<code>/Custom/BuildForm/SYSAGEFORMC002</code></li>
+<li>記錄第三方API呼叫歷史到MongoDB</li>
+<li>解析BPM響應並提取單號</li>
+<li>返回BPM處理結果</li>
+</ul>
+<h3 id="5-2-api-請求與響應範例">5-2. API 請求與響應範例 </h3>
+<h4 id="5-2-1-訂單上傳檔案api範例">5-2-1. 訂單上傳檔案API範例 </h4>
+<h5 id="1-取得訂單單身附加檔案列表">1. 取得訂單單身附加檔案列表 </h5>
+<ul>
+<li><strong>請求:</strong><pre data-role="codeBlock" data-info="http" class="language-http http"><code>GET /orders/2025xxxxxx/orderDetails/2025xxxxxx01/files
+Header:
+  Sub: 1234567890
+  Role: 1234567890
+</code></pre></li>
+<li><strong>響應:</strong><pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+  <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"查詢成功"</span><span class="token punctuation">,</span>
+  <span class="token property">"data"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"eyJhbGciOiJIUzI1NiJ9..."</span><span class="token punctuation">,</span>
+      <span class="token property">"fileName"</span><span class="token operator">:</span> <span class="token string">"contract.pdf"</span><span class="token punctuation">,</span>
+      <span class="token property">"createDate"</span><span class="token operator">:</span> <span class="token string">"2025-06-30T10:30:00+08:00"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"eyJhbGciOiJIUzI1NiJ9..."</span><span class="token punctuation">,</span>
+      <span class="token property">"fileName"</span><span class="token operator">:</span> <span class="token string">"spec.docx"</span><span class="token punctuation">,</span>
+      <span class="token property">"createDate"</span><span class="token operator">:</span> <span class="token string">"2025-06-30T10:35:00+08:00"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+</ul>
+<h5 id="2-上傳訂單附件">2. 上傳訂單附件 </h5>
+<ul>
+<li><strong>請求:</strong><pre data-role="codeBlock" data-info="http" class="language-http http"><code>POST /orders/2025xxxxxx/orderDetails/2025xxxxxx01/files
+Header:
+  Sub: 1234567890
+  Role: 1234567890
+Form:
+  files: [二進制檔案內容]
+</code></pre></li>
+<li><strong>響應:</strong><pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+  <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"檔案上傳成功"</span><span class="token punctuation">,</span>
+  <span class="token property">"data"</span><span class="token operator">:</span> <span class="token null keyword">null</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+</ul>
+<h5 id="3-下載附件">3. 下載附件 </h5>
+<ul>
+<li><strong>請求:</strong><pre data-role="codeBlock" data-info="http" class="language-http http"><code>GET /orders/2025xxxxxx/orderDetails/2025xxxxxx01/file?id=eyJhbGciOiJIUzI1NiJ9...
+</code></pre></li>
+<li><strong>響應:</strong><pre data-role="codeBlock" data-info="" class="language-text"><code>[二進制檔案內容]
+</code></pre></li>
+</ul>
+<h5 id="4-刪除附件">4. 刪除附件 </h5>
+<ul>
+<li><strong>請求:</strong><pre data-role="codeBlock" data-info="http" class="language-http http"><code>DELETE /orders/2025xxxxxx/orderDetails/2025xxxxxx01/file?id=eyJhbGciOiJIUzI1NiJ9...
+Header:
+  Sub: 1234567890
+  Role: 1234567890
+</code></pre></li>
+<li><strong>響應:</strong><pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+  <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"檔案刪除成功"</span><span class="token punctuation">,</span>
+  <span class="token property">"data"</span><span class="token operator">:</span> <span class="token null keyword">null</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+</ul>
+<h4 id="5-2-2-訂變單上傳檔案api範例">5-2-2. 訂變單上傳檔案API範例 </h4>
+<h5 id="1-取得訂變單附加檔案列表">1. 取得訂變單附加檔案列表 </h5>
+<ul>
+<li><strong>請求:</strong><pre data-role="codeBlock" data-info="http" class="language-http http"><code>GET /order/modify/OC123456789/files
+Header:
+  Sub: 1234567890
+  Role: 1234567890
+</code></pre></li>
+<li><strong>響應:</strong><pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+  <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"查詢成功"</span><span class="token punctuation">,</span>
+  <span class="token property">"data"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"eyJhbGciOiJIUzI1NiJ9..."</span><span class="token punctuation">,</span>
+      <span class="token property">"fileName"</span><span class="token operator">:</span> <span class="token string">"change_request.pdf"</span><span class="token punctuation">,</span>
+      <span class="token property">"createDate"</span><span class="token operator">:</span> <span class="token string">"2025-06-30T14:30:00+08:00"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"eyJhbGciOiJIUzI1NiJ9..."</span><span class="token punctuation">,</span>
+      <span class="token property">"fileName"</span><span class="token operator">:</span> <span class="token string">"approval_form.docx"</span><span class="token punctuation">,</span>
+      <span class="token property">"createDate"</span><span class="token operator">:</span> <span class="token string">"2025-06-30T14:35:00+08:00"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+</ul>
+<h5 id="2-上傳訂變單附件">2. 上傳訂變單附件 </h5>
+<ul>
+<li><strong>請求:</strong><pre data-role="codeBlock" data-info="http" class="language-http http"><code>POST /order/modify/OC123456789/files
+Header:
+  Sub: 1234567890
+  Role: 1234567890
+Form:
+  files: [二進制檔案內容]
+</code></pre></li>
+<li><strong>響應:</strong><pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+  <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"檔案上傳成功"</span><span class="token punctuation">,</span>
+  <span class="token property">"data"</span><span class="token operator">:</span> <span class="token null keyword">null</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+</ul>
+<h5 id="3-下載訂變單附件">3. 下載訂變單附件 </h5>
+<ul>
+<li><strong>請求:</strong><pre data-role="codeBlock" data-info="http" class="language-http http"><code>GET /order/modify/file?id=eyJhbGciOiJIUzI1NiJ9...
+</code></pre></li>
+<li><strong>響應:</strong><pre data-role="codeBlock" data-info="" class="language-text"><code>[二進制檔案內容]
+</code></pre></li>
+</ul>
+<h5 id="4-刪除訂變單附件">4. 刪除訂變單附件 </h5>
+<ul>
+<li><strong>請求:</strong><pre data-role="codeBlock" data-info="http" class="language-http http"><code>DELETE /order/modify/OC123456789/file?id=eyJhbGciOiJIUzI1NiJ9...
+Header:
+  Sub: 1234567890
+  Role: 1234567890
+</code></pre></li>
+<li><strong>響應:</strong><pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+  <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"檔案刪除成功"</span><span class="token punctuation">,</span>
+  <span class="token property">"data"</span><span class="token operator">:</span> <span class="token null keyword">null</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+</ul>
+<h4 id="5-2-3-上傳事件api範例">5-2-3. 上傳事件API範例 </h4>
+<h5 id="1-新增上傳事件">1. 新增上傳事件 </h5>
+<ul>
+<li><strong>請求:</strong><pre data-role="codeBlock" data-info="http" class="language-http http"><code>POST /orders/uploadEvent
+Form:
+  files: [二進制檔案內容]
+</code></pre></li>
+<li><strong>響應:</strong><pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+  <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"上傳事件建立成功"</span><span class="token punctuation">,</span>
+  <span class="token property">"data"</span><span class="token operator">:</span> <span class="token string">"20250630-abcde"</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+</ul>
+<h5 id="2-刪除上傳事件檔案">2. 刪除上傳事件檔案 </h5>
+<ul>
+<li><strong>請求:</strong><pre data-role="codeBlock" data-info="http" class="language-http http"><code>DELETE /orders/uploadEvent/20250630-abcde/contract.pdf
+</code></pre></li>
+<li><strong>響應:</strong><pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+  <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"檔案刪除成功"</span><span class="token punctuation">,</span>
+  <span class="token property">"data"</span><span class="token operator">:</span> <span class="token null keyword">null</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+</ul>
+<h4 id="5-2-4-新增訂單api範例">5-2-4. 新增訂單API範例 </h4>
+<h5 id="1-新增訂單含上傳事件">1. 新增訂單(含上傳事件) </h5>
+<ul>
+<li><strong>請求:</strong><pre data-role="codeBlock" data-info="http" class="language-http http"><code>POST /order
+Header:
+  Sub: 1234567890
+  Role: 1234567890
+Body:
+  {
+    "data":{
+      "body":[
+          {
+              "uploadEventIds":[
+                  "20250630-abcde"
+              ]
+          }
+      ]
+    }
+  }
+</code></pre></li>
+</ul>
+<h4 id="5-2-5-新增訂變單api範例">5-2-5. 新增訂變單API範例 </h4>
+<h5 id="1-新增訂變單含上傳事件">1. 新增訂變單(含上傳事件) </h5>
+<ul>
+<li><strong>請求:</strong><pre data-role="codeBlock" data-info="http" class="language-http http"><code>POST /order/modify/2025xxxxxx
+Header:
+  Sub: 1234567890
+  Role: 1234567890
+Body:
+  {
+    "data":{
+      "uploadEventIds":[
+          "20250630-abcde"
+      ]
+    }
+  }
+</code></pre></li>
+</ul>
+
+      </div>
+      
+      
+    
+    
+    <script type="module">
+// TODO: If ZenUML gets integrated into mermaid in the future,
+//      we can remove the following lines.
+
+
+var MERMAID_CONFIG = ({"startOnLoad":false});
+if (typeof MERMAID_CONFIG !== 'undefined') {
+  MERMAID_CONFIG.startOnLoad = false
+  MERMAID_CONFIG.cloneCssStyles = false
+  MERMAID_CONFIG.theme = "default"
+}
+
+mermaid.initialize(MERMAID_CONFIG || {})
+if (typeof(window['Reveal']) !== 'undefined') {
+  function mermaidRevealHelper(event) {
+    var currentSlide = event.currentSlide
+    var diagrams = currentSlide.querySelectorAll('.mermaid')
+    for (var i = 0; i < diagrams.length; i++) {
+      var diagram = diagrams[i]
+      if (!diagram.hasAttribute('data-processed')) {
+        mermaid.init(null, diagram, ()=> {
+          Reveal.slide(event.indexh, event.indexv)
+        })
+      }
+    }
+  }
+  Reveal.addEventListener('slidetransitionend', mermaidRevealHelper)
+  Reveal.addEventListener('ready', mermaidRevealHelper)
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+} else {
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+}
+</script>
+    
+    
+    
+  
+    </body></html>

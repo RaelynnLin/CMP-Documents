@@ -1,0 +1,12 @@
+graph TD
+  OrderComponent["OrderComponent / ModifyOrderComponent"]
+  SubOrderComponent["SubOrderComponent"]
+  GoogleExtraFieldComponent["GoogleExtraFieldComponent"]
+  DataTool["DataTool（base class）"]
+  MaForm["MetaageFormComponent（ma-form）"]
+
+  OrderComponent --> SubOrderComponent
+  SubOrderComponent --> GoogleExtraFieldComponent
+  GoogleExtraFieldComponent --> MaForm
+  GoogleExtraFieldComponent -.->|"extends"| DataTool
+  DataTool -.->|"brandCustomCheck()：往下送前批次驗證"| GoogleExtraFieldComponent

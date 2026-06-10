@@ -1,0 +1,18 @@
+%%{init: {'flowchart': {'curve': 'stepAfter'}}}%%
+flowchart LR
+  PT["UI 元件<br>product-table.component"]
+
+  subgraph BrandLayer["品牌實作層 (5 個)"]
+    direction TB
+    Brands["AWS / Standard (沿用基底)<br>Microsoft (override)<br>Cisco (override)<br>Google (override)<br>Akamai (override)"]
+  end
+
+  subgraph BaseLayer["基底服務 (本案異動)"]
+    Base["ProductDataProviderService<br><br>方法：<br>• handleSubCompanyRelatedOrder()<br>• isSubCompanyPriceEditableStatus()"]
+  end
+
+  Helper["IsFromSubCompanyPipe<br>判斷訂單是否來自子公司<br>(orderSource.parentId)"]
+
+  PT -->|呼叫 onCellAllocate| BrandLayer
+  BrandLayer -.繼承並 override.-> BaseLayer
+  BaseLayer -->|使用| Helper

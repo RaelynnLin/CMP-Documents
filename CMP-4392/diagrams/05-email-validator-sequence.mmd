@@ -1,0 +1,18 @@
+sequenceDiagram
+  participant User as 使用者
+  participant Form as MetaageFormComponent
+  participant G as GoogleExtraFieldComponent
+
+  User->>Form: 輸入 Email 值
+  Form->>G: getEmailValidator(control, filterAttr, compareValues) 觸發
+  alt email 為空 且 isEmailRequired
+    G->>Form: ValidationResult type='error'（此欄位為必填）
+  else email 為空 且 isEmailRequired = false
+    G->>Form: ValidationResult type=''（直接通過）
+  else email 格式錯誤
+    G->>Form: ValidationResult type='error'（格式錯誤）
+  else email.split('@')[1] === compareValues['domainAttr']
+    G->>Form: ValidationResult type='error'（email same as domain：比對 Email 的 Domain 部分）
+  else
+    G->>Form: ValidationResult type=''（通過）
+  end

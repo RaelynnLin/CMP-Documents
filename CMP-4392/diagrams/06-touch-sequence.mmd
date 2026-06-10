@@ -1,0 +1,14 @@
+sequenceDiagram
+  participant Parent as SubOrderComponent
+  participant G as GoogleExtraFieldComponent
+  participant Form as MetaageFormComponent
+
+  Parent->>G: needTouched @Input 變更
+  G->>G: doFormTouched(maForm)
+  G->>G: 保存 emailAttr.errorTip、emailAttr.validationResult
+  G->>G: super.doFormTouched(maForm)（父類 touch 邏輯，可能清除 errorTip）
+  G->>G: 恢復 emailAttr.errorTip（優先取 errorTip，否則從 validationResult.errorData 取）
+  alt ui.isEmailRequired
+    G->>G: 恢復 emailAttr.validator = getEmailValidator()
+  end
+  G->>Form: 欄位呈現正確的錯誤狀態

@@ -1,0 +1,9 @@
+sequenceDiagram
+  participant User as 使用者
+  participant Form as MetaageFormComponent
+  participant G as GoogleExtraFieldComponent
+
+  User->>Form: 輸入 Domain 值
+  Form->>G: attributeValidator() 觸發
+  note over G,Form: domainAttr.value 變更後，
+  note over G,Form: 最新值透過 compareValues 傳至 emailAttr

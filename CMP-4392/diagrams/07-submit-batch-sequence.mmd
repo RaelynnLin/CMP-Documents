@@ -1,0 +1,34 @@
+sequenceDiagram
+  participant User as 使用者
+  participant OrderComp as OrderComponent
+  participant CheckOrder as DataTool.checkOrder()
+  participant BrandCheck as DataTool.brandCustomCheck()
+  participant Notify as NzNotificationService
+
+  User->>OrderComp: 點擊「往下送」
+  OrderComp->>CheckOrder: checkOrder(order, ..., orderBaseStep)
+  CheckOrder->>CheckOrder: 通用必填欄位檢查（推入 bodyRequiredColumn）
+  CheckOrder->>CheckOrder: switch brand → Google case
+  alt serveType === 'GCP'
+    CheckOrder->>CheckOrder: 將 endUserEmail 從 bodyRequiredColumn 移除<br>清除 attribute errorTip / hasFeedback
+  end
+  alt serveType === 'GCP' 且 payerId 未填 且 gcpRequiredStatus
+    CheckOrder->>CheckOrder: 加入 payerId 必填提示
+  end
+  OrderComp->>BrandCheck: brandCustomCheck(order, orderBaseStep)
+  BrandCheck->>BrandCheck: switch brand → Google case
+  BrandCheck->>BrandCheck: 判斷 configAgentId !== metaage？
+  alt 非邁達特
+    BrandCheck-->>OrderComp: return true
+  else 邁達特
+    loop 每個非 close 子單
+      BrandCheck->>BrandCheck: 檢查 email 格式
+      BrandCheck->>BrandCheck: 檢查 email.split('@')[1] === domain
+    end
+    alt 有錯誤
+      BrandCheck->>Notify: warning（列出有問題的子單名稱）
+      BrandCheck-->>OrderComp: return false（阻擋往下送）
+    else 無錯誤
+      BrandCheck-->>OrderComp: return true
+    end
+  end

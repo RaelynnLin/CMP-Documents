@@ -1,0 +1,21 @@
+sequenceDiagram
+  participant Parent as SubOrderComponent
+  participant G as GoogleExtraFieldComponent
+  participant Form as MetaageFormComponent
+
+  Parent->>G: @Input orderStep 變更
+  G->>G: ngOnChanges()
+  G->>G: requiredColumn() 設定必填欄位（含 domainAttr.required）
+  G->>G: 判斷 isMetaage
+  alt 代理商為邁達特
+    G->>G: emailAttr.visible = true
+    G->>G: setEndUserEmailAttr()
+    G->>G: 判斷 emailRequiredByField 或 emailRequiredByStep
+    alt Email 為必填（任一條件成立）
+      G->>G: ui.isEmailRequired = true
+      G->>G: emailAttr.required = false（改由自訂 validator 接管）
+      G->>G: emailAttr.labelTemplateId = 'emailLabelTpl'（顯示紅色星號）
+    end
+    G->>G: emailAttr.validator = getEmailValidator()（無論是否必填皆設定）
+  end
+  G->>Form: filterAttribute 傳入渲染

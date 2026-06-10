@@ -1,0 +1,25 @@
+%%{init: {'flowchart': {'curve': 'stepAfter'}}}%%
+flowchart TB
+  In(["欄位 cell 進入<br>handleSubCompanyRelatedOrder"])
+
+  Q1{"是子公司關聯訂單<br>且為非費用類品項?"}
+  Skip(["跳過處理<br>(費用類維持原本可編輯狀態)"])
+
+  Q2{"訂單狀態 ∈<br>DRAFT / REVIEW_PM /<br>DRAWN / REJECTED?<br>(CMP-4456 新增條件)"}
+
+  ListWithPrice["可編輯欄位清單<br>= 乘數 + 售價<br>＋ 品牌特有欄位"]
+  ListNoPrice["可編輯欄位清單<br>= 乘數<br>＋ 品牌特有欄位"]
+
+  Q3{"目前欄位<br>在可編輯清單?"}
+  Lock["鎖住欄位<br>event.item.disabled = true"]
+  Pass(["保持可編輯"])
+
+  In --> Q1
+  Q1 -->|否| Skip
+  Q1 -->|是| Q2
+  Q2 -->|是 解鎖狀態| ListWithPrice
+  Q2 -->|否 採購審核以後等| ListNoPrice
+  ListWithPrice --> Q3
+  ListNoPrice --> Q3
+  Q3 -->|在| Pass
+  Q3 -->|不在| Lock

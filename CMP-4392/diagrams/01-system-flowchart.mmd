@@ -1,0 +1,20 @@
+%%{init: {'flowchart': {'curve': 'stepAfter'}}}%%
+flowchart TD
+  A["使用者填寫 Google 訂單子單"] --> B{"代理商是否為邁達特？"}
+  B -- "否" --> C["隱藏 Email 欄位<br>驗證略過"]
+  B -- "是" --> D["顯示 Email 欄位"]
+  D --> Z{"serveType 是否為 GCP？"}
+  Z -- "是" --> F["Email 非必填<br>清除既有紅框與 form control 狀態"]
+  Z -- "否" --> E{"orderStep.requiredField.body<br>包含 endUserEmail？"}
+  E -- "否" --> F
+  E -- "是" --> G["Email 必填<br>設定自訂 validator"]
+  G --> H["使用者輸入 Email"]
+  F --> H
+  H --> I{"Email 是否為空？"}
+  I -- "是 + 必填" --> J["錯誤：此欄位為必填！"]
+  I -- "是 + 非必填" --> O["驗證通過"]
+  I -- "否" --> M{"Email 格式是否正確？"}
+  M -- "否" --> N["錯誤：格式錯誤"]
+  M -- "是" --> K{"Email 的 Domain<br>=== Domain 欄位值？"}
+  K -- "是" --> L["錯誤：客戶 E-mail 的 Domain<br>不可與 Domain 欄位相同"]
+  K -- "否" --> O
