@@ -5,6 +5,7 @@
 | 版本 | 日期       | 修訂內容 | 修訂者  |
 | ---- | ---------- | -------- | ------- |
 | 1.0  | 2026-06-15 | 初版建立。涵蓋：批次更新帳單前端 UI/UX 與結構輪廓（§4、§5）、非同步批次架構（Kafka `cmp-ready-to-billing` 佇列＋Worker，§6.3/§6.5）、帳單更新狀態模型（沿用既有 `RunBillingAPIStatus`／`BillingStatus`，§6.4）、狀態機與冪等（§6.7）、SSE 即時推播（比照 CMP-4280／4266，重用 `SseEvent`／`SseHelper`／`SseEmitter`／`ApiSseService`，§6.6/§8.4）、已鎖定帳單排除（§6.8）、既有後端服務對照（billing-v2／invoice-v1／Gateway，§6.11）、API 規格（訂單查詢／批次更新／狀態查詢／SSE／下載＝`type=SUMMARY_PDF`，§8）、AC（§10）。待確認事項見 §6.12。 | Raelynn |
+| 1.1  | 2026-06-24 | 新增「失敗帳單重新更新」功能：<br>• 「已完成更新帳單」之 FAIL 項目提供 ⓘ 失敗原因 popover 與「重新更新」icon，單筆重跑（重用批次更新 API）<br>• 重跑結果依後端回應分流：受理者進「待更新」，已鎖定／更新中者留在「已完成」並提示<br>• 後端重跑前重查鎖定與全域狀態，受理後更新該筆歸屬（觸發者／今日）<br>• 影響範圍：§4、§5、§6.4/§6.7/§6.8、§7.4、§8.5、UC-05、AC-22～AC-24，並更新搜尋結果頁截圖 | Raelynn |
 
 ---
 
@@ -111,7 +112,15 @@
 9. 當 SSE 推播更新項目狀態為 SUCCESS/FAIL 時
    - 從「待更新」移至「已完成」
    - SUCCESS：顯示下載按鈕
-   - FAIL：顯示錯誤原因
+   - FAIL：於更新狀態欄顯示 **ⓘ 失敗原因 icon（hover/點擊以 popover 呈現 `error`）** 與 **重新更新 icon（重跑圖示）**
+
+10. 使用者於「已完成更新帳單」區塊點擊某筆 FAIL 項目的「重新更新 icon」時：
+    - 前端對該筆（單筆）呼叫批次更新帳單 API（`subOrderId` 帶單一元素），走與批次相同之冪等＋鎖定檢查（§6.7、§6.8）。
+    - **依回應結果再決定是否移動**（API 接收即回、< 1s，不採樂觀移動、亦無回滾）。依 §8.5 之落點處理，**只有 `enqueued` 會移到「待更新」**：
+      - `enqueued`（受理）：該筆移至「待更新帳單」（狀態 `START`），後續走 SSE。
+      - `lockedSkipped`（已鎖定）：**留在「已完成更新帳單」**，提示「此帳單已鎖定，無法重跑」。
+      - `skipped`（已在更新中）：**留在「已完成更新帳單」**，提示「此帳單已在更新佇列中或更新中，請稍後再試」。
+    - 重新更新 icon **一律保留**，使用者可重複嘗試；待帳單解鎖或他人更新完成後再點即會被受理而進入「待更新」。原本的 ⓘ 失敗原因（`error`）保持不變，上述為本次重跑被婉拒之臨時提示。
 
 ### 4.2 功能規則
 
@@ -119,8 +128,10 @@
 - 正在執行中的帳單（更新狀態為 START / RUNNING）的訂單不可重複觸發（checkbox disabled）
 - **已鎖定帳單不可重跑**：`locked = true` 之項目於清單以鎖頭圖示禁選，後端亦強制排除（§6.8）
 - 任務為非同步執行，不阻塞頁面操作
+- **失敗項目可重新更新**：「已完成更新帳單」中 FAIL 項目可由使用者點「重新更新 icon」單筆重跑（icon 一律顯示、可重複嘗試）；重跑前後端再次驗證鎖定與是否更新中（§6.8），未受理者（`lockedSkipped`/`skipped`）**留在「已完成」並提示**，僅 `enqueued` 進入「待更新」
 - UI 狀態轉換（`BillingStatus`）：
   - START（待更新）→ RUNNING（更新中）→ SUCCESS（已完成）/ FAIL（更新失敗）
+  - FAIL → START（使用者按「重新更新」重跑，回到待更新；§6.7）
 
 ---
 
@@ -141,7 +152,11 @@
 頁面進入後上半部為「**當日帳單更新狀態**」，下半部為「**批次更新帳單**」查詢區：
 
 - **待更新帳單區塊**：標題列出總筆數（例：共 73 筆），列出 `訂單單號`、`子單單號`、`帳單月份`、`更新狀態`（RUNNING 顯示載入動畫、START 顯示時鐘圖示）。
-- **已完成更新帳單區塊**：列出 `訂單單號`、`子單單號`、`帳單月份`、`更新狀態`；SUCCESS 於更新狀態欄顯示**下載圖示**；FAIL 以紅字顯示「失敗原因」。區塊下方註記：「目前僅提供『繳費通知單』下載，如需其他版本，請至訂單頁面另行下載。」
+- **已完成更新帳單區塊**：列出 `訂單單號`、`子單單號`、`帳單月份`、`更新狀態`；於更新狀態欄以 icon 呈現操作：
+    - **SUCCESS**：顯示**下載圖示**（點擊下載繳費通知單）。
+    - **FAIL**：顯示 **ⓘ 失敗原因 icon**（hover/點擊以 **popover** 顯示 `error` 失敗原因）＋ **重新更新 icon（重跑圖示）**（點擊單筆重跑，該筆移回「待更新帳單」，§4.1 步驟 10）。
+
+    區塊下方註記：「目前僅提供『繳費通知單』下載，如需其他版本，請至訂單頁面另行下載。」
 - **查詢條件輸入區**：
     - `*帳單月份`（必填）：月份選擇器（YYYY-MM）。
     - `*訂單單號`（必填）：多行 Textarea，旁附 ⓘ 提示「支援輸入多組訂單單號，上限 50 筆，每行一筆或以逗號分隔」。
@@ -195,6 +210,7 @@
 | 查詢結果清單 + 已選集合 | 搜尋後由訂單單號查詢 API 取得（後端分頁）；已選集合由前端維護，並**跨分頁保留**（換頁不清空已勾選）|
 | SSE 連線 | 進頁建立、離頁（`ngOnDestroy`）關閉；斷線重連後重抓 Status API 還原（§8.4）|
 | 送出後 | 對送出的子單**新增**為 `START` 至待更新清單；待 SSE `RUNNING` → 標更新中；`SUCCESS/FAIL` → 移至已完成 |
+| 重新更新（FAIL 重跑）| 點「重新更新 icon」單筆呼叫批次更新 API，**依回應再移動**（不樂觀、不回滾）：僅 `enqueued` 移至「待更新」(`START`)；`lockedSkipped`/`skipped` 該筆**留在「已完成」**並提示對應訊息（已鎖定／更新中）。icon 一律保留可重複嘗試（§4.1 步驟 10、§6.8）|
 | 重新整理/重連一致性 | 一律以 Status API 快照為準（§4、§6.6）|
 
 ---
@@ -377,8 +393,8 @@ flowchart TD
 | `year` / `month` | string | 年（YYYY）/ 月（MM）|
 | `status` | `BillingStatus` | 計費執行狀態 enum（見下）|
 | `error` | string | 錯誤訊息（FAIL 時，對應前端「失敗原因」）|
-| `createUserId` | string | 觸發者（＝本 SA 先前所稱 `triggeredBy`；取自 Gateway 注入之 `Sub`）|
-| `createDate` | Date | 創建日（＝觸發時間；「當日」過濾依據）|
+| `createUserId` | string | 觸發者（＝本 SA 先前所稱 `triggeredBy`；取自 Gateway 注入之 `Sub`）；**重跑受理時更新為本次觸發者**，該筆即歸屬最後一次觸發者之當日面板 |
+| `createDate` | Date | 創建日（＝觸發時間；「當日」過濾依據）；**重跑受理時更新為今日**，故昨日失敗、今日重跑會落入今日面板 |
 | `modifyDate` | Date | 最後編輯日（＝最後狀態變更時間，對應 `billingUpdateTime`）|
 
 **`BillingStatus` enum 與本功能採用之狀態**
@@ -525,6 +541,7 @@ stateDiagram-v2
 
 - 僅 `SUCCESS` / `FAIL` 為終態，可被使用者重新觸發回到 `START`（重新計算）。
 - `START` / `RUNNING` 為進行中，**不可再次觸發**。
+- **「重新更新」入口**：「已完成更新帳單」FAIL 項目的「重新更新 icon」即為 `FAIL → START` 的觸發來源，後端**重用批次更新 API**（單筆 `subOrderId`），不另設端點；其冪等、鎖定排除與一般批次送出完全一致（下方冪等性與 §6.8）。
 
 **冪等性與重複觸發防護（後端強制）**
 
@@ -533,7 +550,7 @@ stateDiagram-v2
 1. 批次更新 API 收到子單清單後，依 `(orderDetailId, year, month)` 查詢 `RunBillingAPIStatus`，並查 `Invoices.locked`。
 2. 若帳單 `locked = true` → **略過該筆**（不入列），回應 `lockedSkipped` 告知（§6.8）。
 3. 若狀態為 `START` 或 `RUNNING` → **略過該筆**（不重複入列），回應 `skipped` 告知前端。
-4. 若無任務或狀態為 `SUCCESS` / `FAIL`（且未鎖定）→ 以 upsert 寫入/重置為 `START` 並入列。
+4. 若無任務或狀態為 `SUCCESS` / `FAIL`（且未鎖定）→ 以 upsert 寫入/重置為 `START` 並入列；**同時將 `createUserId` 更新為本次觸發者（Gateway 注入之 `Sub`）、`createDate` 更新為今日**，使該筆歸屬本次觸發者之當日面板與 SSE 推播範圍（§6.4、§6.6）。此即「重跑受理（`enqueued`）後該筆必為本次使用者所有、可安全顯示於其『待更新』」之依據。
 5. 唯一索引 `(orderDetailId, year, month)` 作為最終防線，攔截競態下的重複寫入。
 
 ---
@@ -550,6 +567,7 @@ stateDiagram-v2
 | 權限 | 由 **Gateway** 驗證 Azure B2C JWT 並注入 `Sub`(userId)/`Role`(roleId) header（後端不自行解析 JWT）；後端依 `Role` + IAM 檢查帳單管理權限（新增權限，比照 `invoice-v1::api::runInvoice`，§3），`createUserId` 取自 `Sub`。SSE 連線同樣經 Gateway 驗證（§6.11）。 |
 | 子單可更新性 | **不限制子單狀態**：已關閉 / 合約期滿之子單亦允許重跑帳單，後端不加阻擋（依需求方確認）。 |
 | 已鎖定帳單排除 | **已鎖定（locked）帳單不可重跑**。查詢 API 回填 `locked`；批次更新 API 須**強制排除** `locked = true` 之子單（不入列），並於回應 `lockedSkipped` 告知前端（沿用 billing-v2 `addLocked` 排除已鎖定之既有邏輯，§6.11）。注意「帳單鎖定」與「子單狀態」為**不同維度**：子單狀態不限制，但帳單一旦鎖定即不可重跑。 |
+| 重新更新（FAIL 重跑）須重驗鎖定與狀態 | 「重新更新」走同一支批次更新 API，**不可假設 FAIL 必可重跑**。後端須於入列前**即時重查 `Invoices.locked` 與全域 `RunBillingAPIStatus` 狀態**：已鎖定回 `lockedSkipped`、已在 `START`/`RUNNING` 回 `skipped`。此二者前端**皆留在「已完成」並提示**（不移至「待更新」、不回滾刪除），僅 `enqueued` 才進「待更新」（§4.1 步驟 10、§5.4）。<br>**設計理由**：「已完成」面板資料源（§8.3 Status API + SSE）不帶 `locked` 且為「該使用者當日」範圍；若把 `skipped`（常為他人正在更新）移入「待更新」顯示更新中，該使用者收不到他人任務之 SSE，將永久卡在「更新中」。故一律留在「已完成」、靠重複點擊在解鎖／他人完成後被受理，最為一致。 |
 
 ---
 
@@ -665,7 +683,7 @@ stateDiagram-v2
   | 訂單單號         | 主單號                     |
   | 子單單號         | 子單編號（對應 subOrderId） |
   | 帳單月份         | YYYY-MM               |
-  | 更新狀態         | 成功顯示下載按鈕（呼叫 `GET invoice-v1/invoice/file/{orderDetailId}?year=&month=&type=SUMMARY_PDF`，繳費通知單）/ 失敗顯示錯誤訊息 |
+  | 更新狀態         | **成功**：下載按鈕（呼叫 `GET invoice-v1/invoice/file/{orderDetailId}?year=&month=&type=SUMMARY_PDF`，繳費通知單）。**失敗**：ⓘ 失敗原因 icon（popover 顯示 `error`）＋ 重新更新 icon（單筆重跑，移回「待更新帳單」，§4.1 步驟 10）|
 
   ### 7.5 前端資料模型（View Model）
 
@@ -1011,6 +1029,8 @@ stateDiagram-v2
 }
 ```
 
+> **回應範圍說明（重要）**：`enqueued` / `skipped` / `lockedSkipped` **僅包含本次請求送出的 `subOrderId`**，並非後端全域佇列清單。其中 `skipped` / `lockedSkipped` 之**判斷係比對全域狀態（跨使用者）**：`skipped` 表示該筆在全域已為 `START`（排隊中）或 `RUNNING`（更新中）——可能由他人觸發；`lockedSkipped` 表示 `Invoices.locked = true`。受理之 `enqueued` 必為本次使用者所觸發，入列時該筆 `createUserId` 更新為本次使用者、`createDate` 更新為今日（§6.4、§6.7），故可安全顯示於該使用者「待更新」面板。<br>（跨使用者「正在更新中」之可見性，僅體現在**搜尋清單**之 `billingUpdateStatus`／鎖頭禁選，§6.8；個人面板仍只含本人當日任務。）
+
 **HTTP 狀態碼**
 
 | 狀態碼 | 適用情境 |
@@ -1096,6 +1116,18 @@ stateDiagram-v2
 2. 系統提示「批次上限為 50 筆，請減少輸入數量」
 3. 使用者修正後重新提交
 
+### 9.5 UC-05：重新更新失敗帳單（替代流程）
+
+1. 「已完成更新帳單」區塊中某筆狀態為 FAIL
+2. 使用者將游標移至／點擊 ⓘ 失敗原因 icon，以 popover 檢視失敗原因（`error`）
+3. 使用者點擊該筆的「重新更新 icon」
+4. 前端對該筆（單一 `subOrderId`）呼叫批次更新帳單 API（不樂觀移動，待回應再處理）
+5. 後端依冪等與鎖定規則處理並回應（§6.7、§6.8、§8.5），前端依落點處理：
+   - `enqueued`（受理）→ 該筆移至「待更新」（`START`），後續經 SSE 推送 RUNNING → SUCCESS/FAIL
+   - `lockedSkipped`（已鎖定）→ **留在「已完成」**，提示「此帳單已鎖定，無法重跑」
+   - `skipped`（已在更新中）→ **留在「已完成」**，提示「此帳單已在更新佇列中或更新中，請稍後再試」
+6. 重新更新 icon 一律保留；使用者可於解鎖／他人更新完成後重複點擊，屆時即被受理進入「待更新」
+
 ---
 
 ## 10. 驗收條件（AC）
@@ -1112,7 +1144,7 @@ stateDiagram-v2
 | AC-08 | 系統需透過 SSE 提供即時狀態更新（START → RUNNING → SUCCESS / FAIL） |
 | AC-09 | 當收到 RUNNING 狀態時，前端需將該筆資料從「待更新」標記為「更新中」 |
 | AC-10 | 當收到 SUCCESS 或 FAIL 狀態時，前端需將該筆資料移至「已更新完成」區塊 |
-| AC-11 | 已完成訂單中，SUCCESS 顯示下載按鈕，FAIL 顯示錯誤原因 |
+| AC-11 | 已完成訂單中，SUCCESS 顯示下載按鈕；FAIL 顯示 ⓘ 失敗原因 icon（popover 呈現 `error`）與重新更新 icon |
 | AC-12 | 批次更新 API 須立即回應已接收（不等待計算完成），計算於佇列/Worker 非同步進行 |
 | AC-13 | 後端須以 `(orderDetailId, year, month)` 強制冪等：已 START/RUNNING 之子單再次送出時略過，不重複入列 |
 | AC-14 | 後端須獨立驗證 50 筆上限與月份格式，超過/不符時回 400 並阻止整批入列 |
@@ -1123,3 +1155,6 @@ stateDiagram-v2
 | AC-19 | 前端 SSE 斷線重連後，須能由 Status API 還原當前正確狀態（最終一致性以 Status API 為準） |
 | AC-20 | 所有後端端點（含 SSE）均須通過 Gateway 之 JWT 驗證與帳單管理權限檢查（後端依注入之 Sub/Role 判斷）|
 | AC-21 | 已鎖定（locked）帳單不可重跑：查詢清單該列以鎖頭圖示禁選，後端須強制排除並於回應 `lockedSkipped` 告知 |
+| AC-22 | 「已完成更新帳單」中 FAIL 項目須提供「重新更新 icon」並**一律顯示**（不依鎖定狀態隱藏），點擊後對該筆單筆重跑（重用批次更新 API） |
+| AC-23 | 重新更新依回應落點處理（§8.5）：僅 `enqueued` 移至「待更新」；`lockedSkipped` 與 `skipped` 該筆**留在「已完成」**並提示對應訊息（已鎖定／更新中），不移動、不刪除 |
+| AC-24 | 重新更新須重用批次更新 API 之冪等與鎖定規則：後端入列前即時重查 `Invoices.locked` 與全域狀態（`START`/`RUNNING`），不可僅依前端判斷 |
