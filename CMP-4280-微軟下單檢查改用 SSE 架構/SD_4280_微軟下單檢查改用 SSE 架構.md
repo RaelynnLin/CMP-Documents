@@ -2,10 +2,11 @@
 
 | **版本** | **日期** | **修訂內容** | **修訂者** |
 | --- | --- | --- | --- |
-| v1.3 | 2026-06-24 | **靜默調整不發通知、不標記**：`valid:true` 自動套用 `suggestedBatchDate` 後**不發 info 通知、亦不於下單日欄位顯示任何標記**，直接視為通過（對使用者完全透明）。移除 i18n `add-on auto delay message`／`add-on auto delay title` key、`product.component` 之 `notify.info` 呼叫，以及 `OrderProduct.autoDelayed` 欄位與 `microsoft-data-provider` 之 `batchDate` 欄位 `hasFeedback`/`warningTip` 標記。影響 §5.1、§5.2.2、§5.3、§5.4、§5.5、§5.6、§5.7。 | Raelynn |
 | v1.0 | 2026-03-26 | 初始化文件 | Raelynn |
 | v1.1 | 2026-06-18 | 新增第 5 章 [CMP-4469](https://metaage-corp.atlassian.net/browse/CMP-4469)：Add-on 依賴自動延後排程。擴充 SSE `STEP_PROGRESS` 攜帶 `isAddon` / `prerequisiteSkus` / `errorCode`；`OrderProduct` 新增 `isAddon` / `prerequisiteSkus` / `autoDelayed` 欄位；新增 3 組 i18n key。<br>**觸發時機修正**：後端會驗證 add-on 預計下單日須晚於 base，未晚於時回 `valid:false`（「add-on 的預計下單日需晚於 base 的預計下單日」）；前端於此「date-too-early」失敗（不帶需人工處理的 `errorCode`）時自動將 add-on batchDate +30min 並 Toast 通知（**累積一筆**，列出所有受影響產品），**不自動重跑下單檢查**（CMP-4469 SA 未涵蓋此情境，本 SD 補齊）；需人工處理的失敗（帶 `errorCode`，如缺少對應 base）僅顯示錯誤、不修正。<br>依據文件：[CMP-4469 SA（前端）](https://metaage-corp.atlassian.net/wiki/pages/viewpage.action?pageId=184287495)、[CMP-4400 SA（後端）](https://metaage-corp.atlassian.net/wiki/pages/viewpage.action?pageId=181862503)；如設計有衝突，以「CMP_SA_微軟下單Add-on依賴前端排程 (CMP-4469)」為主。 | Raelynn |
 | v1.2 | 2026-06-24 | **第 5 章三來源對齊並依後端 SD v25 定稿（CMP-4469）**：<br>• 引用補上來源③ [4266_SD（後端）](https://metaage-corp.atlassian.net/wiki/x/lADpC)，新增 §5.1「三來源策略對照表」。<br>• **SSE 介接定案**：後端於 `STEP_PROGRESS.data` 回傳 **`suggestedBatchDate`**（= `max(base, 現在)+30 分`），**不回 `prerequisiteSkus`**；base 比對與日期計算由後端完成，前端僅套用建議值（不再於前端比對 base／自算）。<br>• **前端依 `valid` 分流**：`valid:true` 自動套用 `suggestedBatchDate`、`autoDelayed=true`、視為通過並跳 **info 通知**（add-on 名稱＋調整後日期）；`valid:false` **不自動套用**，僅顯示錯誤、由使用者手動調整 batchDate 後**重新下單檢查**通過才可送出。<br>• **影響章節**：§5.1 對照表、§5.2（欄位＋情境對照）、§5.3（僅留 `autoDelayed`）、§5.4（流程依 `valid` 分流）、§5.5、§5.6（通知文案「add-on 名稱＋調整後日期」）、§5.7（邊界 E-1～E-10 依 `valid`/`suggestedBatchDate` 分類）。 | Raelynn |
+| v1.3 | 2026-06-24 | **靜默調整不發通知、不標記**：`valid:true` 自動套用 `suggestedBatchDate` 後**不發 info 通知、亦不於下單日欄位顯示任何標記**，直接視為通過（對使用者完全透明）。移除 i18n `add-on auto delay message`／`add-on auto delay title` key、`product.component` 之 `notify.info` 呼叫，以及 `OrderProduct.autoDelayed` 欄位與 `microsoft-data-provider` 之 `batchDate` 欄位 `hasFeedback`/`warningTip` 標記。影響 §5.1、§5.2.2、§5.3、§5.4、§5.5、§5.6、§5.7。 | Raelynn |
+| v1.4 | 2026-06-25 | 新增第 6 章 [CMP-4556](https://metaage-corp.atlassian.net/browse/CMP-4556)：**累積購買數量檢核三態狀態機制**。SSE `STEP_PROGRESS.data` 的閘門欄位由布林 `valid` 改為三態 `validationStatus`（`SUCCESS`/`WARNING`/`FAIL`）；前端**僅 `FAIL` 卡控禁止送審**，`WARNING`（預先打單暫時超量）僅顯示後端 `message` 提示但**放行**。WARNING 訊息一律由後端組字串（前端不新增 i18n）；**不保留 `valid` 向下相容**，須與後端 [CMP-4555](https://metaage-corp.atlassian.net/browse/CMP-4555) 同步上線。影響：modal、產品表錯誤欄著色、`applyAddonBatchDelay` 套用條件。 | Raelynn |
 
 ## 相關Jira單：
 
@@ -13,6 +14,8 @@
 * CMP-4266 M1312260121008 的 訂變單 OC2620408 微軟下單檢核 timeout
 * [CMP-4469](https://metaage-corp.atlassian.net/browse/CMP-4469) 微軟下單檢核：依 dynamicAttributes 檢測 add-on 與 base 相依，前端依關聯延後 add-on 子單 batch date（前台）
 * [CMP-4400](https://metaage-corp.atlassian.net/browse/CMP-4400) 同上（後台主任務，本前端 SD 的後端介接來源）
+* [CMP-4556](https://metaage-corp.atlassian.net/browse/CMP-4556) 微軟下單檢核：調整品項累積購買數量檢核狀態機制（前台）
+* [CMP-4555](https://metaage-corp.atlassian.net/browse/CMP-4555) 同上（後台，`validationStatus` 三態與 `message` 介接來源）
 
 ## 目錄：
 
@@ -34,6 +37,15 @@
    * 5.5 修改 / 新增檔案
    * 5.6 i18n 新增 key
    * 5.7 邊界條件與例外處理
+6. CMP-4556 擴充：累積購買數量檢核三態狀態機制（validationStatus）
+   * 6.1 需求背景與狀態定義
+   * 6.2 SSE 回應格式調整（valid → validationStatus）
+   * 6.3 前端判斷規則（僅 FAIL 卡控）
+   * 6.4 型別 / 資料模型調整
+   * 6.5 修改檔案
+   * 6.6 i18n
+   * 6.7 邊界條件與例外處理
+   * 6.8 影響範圍與向下相容
 
 ## 1. 目標
 
@@ -683,6 +695,8 @@ PM 審核階段判斷子單是否需要下單檢查時，新增 `OrderProductSta
 
 #### 5.2.1 `STEP_PROGRESS.data` 欄位（依後端 SD v25）
 
+> ⚠️ **CMP-4556 起，本章的布林 `valid` 已由三態 `validationStatus`（`SUCCESS`/`WARNING`/`FAIL`）取代，對應關係見 [§6.2](#62-sse-回應格式調整valid--validationstatus)**：本章敘述中 `valid:true` ≈ `validationStatus !== 'FAIL'`（含 `SUCCESS`／`WARNING`）、`valid:false` ≈ `validationStatus === 'FAIL'`；`WARNING` 為 CMP-4556 新增、不擋單的中間態。
+
 | 欄位 | 型別 | 說明 |
 |------|------|------|
 | `data.index` | `number` | 品項索引（**0-based**，對應 request `products` 陣列順序），指向「該筆驗證結果的產品」 |
@@ -896,3 +910,240 @@ case 'batchDate':
 | E-4 | base 子單於 Partner Center 失敗 | base / add-on 子單皆以既有「下單失敗」狀態呈現，前端不額外提示、不提供取消／調整按鈕 |
 | E-5 | 使用者重新點「下單檢查」 | 重跑檢核並於回傳後依後端最新 `suggestedBatchDate` 重新套用（靜默）；無標記狀態需重置 |
 | E-6 | 使用者手動把 batchDate 改更早後未再點檢查 | 前端不自動覆寫，「儲存」時直接送使用者最後設定值（下次檢查後端會再回 `suggestedBatchDate`）|
+
+## 6. CMP-4556 擴充：累積購買數量檢核三態狀態機制（validationStatus）
+
+> 依據 [CMP-4556](https://metaage-corp.atlassian.net/browse/CMP-4556)（前台）、後端 [CMP-4555](https://metaage-corp.atlassian.net/browse/CMP-4555)。本章延伸 §4（SSE 下單檢核）與 §5（CMP-4469）：將原本以布林 `valid` 表示「通過 / 不通過」的二態，改為三態 `validationStatus`，使「預先打單」等暫時超量情境可**告警但放行**。
+
+### 6.1 需求背景與狀態定義
+
+**背景**：微軟下單時系統會檢核品項累積購買數量。預先打單情境下會誤卡——例如某客戶 `productId`-`skuId` 的有效數量為 204、使用者預先打單預計下單日為 2026-06-28，而部分有效訂閱會在 2026-06-28 釋放 U 數，導致**當下檢核時數量看似超標、但實際下單日並不會超量**。原二態機制會直接卡控，使用者無法預先打單。
+
+**調整方向**：後端檢核結果改為三種狀態，前端僅在「失敗」時卡控。
+
+| 狀態 | Enum 值 | 說明 | 前端行為 |
+|------|---------|------|----------|
+| 成功 | `SUCCESS` | 所有品項通過所有檢核 | 正常送審 |
+| 告警 | `WARNING` | 累積購買數量超過 `maximumQuantity`（預先打單情境，`batchDate` 前可能釋放 U 數）| 顯示提示訊息，**允許送審** |
+| 失敗 | `FAIL` | SKU 不存在、數量不符、缺少 base 商品、RI 庫存不足等硬性規則錯誤 | **卡控，禁止送審** |
+
+- Enum 類別名稱：`ValidationStatus`
+- SSE 回傳 key：`validationStatus`（camelCase）
+
+### 6.2 SSE 回應格式調整（valid → validationStatus）
+
+`STEP_PROGRESS.data` 的閘門欄位由布林 `valid` 改為三態字串 `validationStatus`：
+
+| 版本 | `data` 內容 |
+|------|-------------|
+| 舊（§4 / §5）| `{ "valid": true/false, "index": i, "suggestedBatchDate"?: ... }` |
+| 新（CMP-4556）| `{ "validationStatus": "SUCCESS" / "WARNING" / "FAIL", "index": i, "suggestedBatchDate"?: ... }` |
+
+WARNING 回傳範例（訊息文字由後端組好）：
+
+```
+event:STEP_PROGRESS
+data:{"eventType":"STEP_PROGRESS","message":"注意：此商品累積購買數量（現有 200 + 本次 10 = 210）已達原廠上限（204），請確認後再送審","progress":100,"data":{"index":0,"validationStatus":"WARNING"}}
+```
+
+- **`message` 文字一律由後端提供**（含告警數量明細：`現有 {existingQty} + 本次 {quantity} = {total}`、上限 `{maximumQuantity}`）；前端只負責顯示，**不組字串、不新增 i18n key**。
+- **不保留 `valid` 向下相容**：前端直接讀 `validationStatus`，須與後端 CMP-4555 **同步上線**。防呆：`validationStatus` 缺漏時，前端一律視為 `FAIL`（保守卡控，不靜默放行未檢核品項）。
+
+> 與 §5.2.1 對應：原 `valid:true` ≈ `validationStatus !== 'FAIL'`（含 `SUCCESS` / `WARNING`），`valid:false` ≈ `validationStatus === 'FAIL'`；`WARNING` 為本次新增、不擋單的中間態。CMP-4469 的 add-on 日期調整情境仍以 `SUCCESS`（必要時附 `suggestedBatchDate`）/`FAIL`（日期不合法、缺 base）回傳。
+
+### 6.3 前端判斷規則（僅 FAIL 卡控）
+
+![validationStatus 三態判斷流程](SD_4280_flow_validation_status.svg)
+
+```mermaid
+%%{init: {'flowchart': {'curve': 'stepAfter'}}}%%
+flowchart TD
+    A([下單檢查回傳<br>STEP_PROGRESS]) --> B[逐品項讀取<br>validationStatus]
+    B --> C{validationStatus?}
+    C -- SUCCESS --> D[品項 pass<br>不顯示訊息]
+    C -- WARNING --> E[品項 warning<br>顯示 message 橘色<br>不擋單]
+    C -- FAIL --> F[品項 fail<br>顯示 message 紅色]
+    D --> G{任一品項<br>為 FAIL?}
+    E --> G
+    F --> G
+    G -- 是 --> H([不通過<br>卡控禁止送審])
+    G -- 否 --> I([通過<br>WARNING 仍可送審])
+```
+
+- **逐品項狀態映射**：`SUCCESS → pass`、`WARNING → warning`、`FAIL → fail`。
+- **整體是否通過（`isChecked`）** = 無任何步驟 `error` **且無任何品項為 `fail`**；`WARNING`、`SUCCESS` 皆視為通過、可送審。
+- **每個 `index` 僅一筆結果（後端保證）**：後端對每個品項 `index` 僅回**一筆最終 `STEP_PROGRESS`**（含彙整後的 `validationStatus` 與對應 `message`），**前端不做去重／彙整**，依事件直接寫入該品項狀態與訊息。
+- **訊息顯示**：`message` 一律回寫至該品項 `errorDescription`；顯示顏色依狀態——`FAIL` 紅色（`text-danger`）、`WARNING` 橘色（自訂 class `text-color-order-warning`，色值 `#fa8c16`，定義於各使用元件的 scss——`product-table.component.scss` 與 `approval-check-modal.component.scss`，不放全域 `styles.scss`）。顯示位置：**下單檢查 Modal 品項列** 與 **產品列表「錯誤訊息」欄** 皆依狀態著色。
+- **與 CMP-4469 連動**：`applyAddonBatchDelay` 套用條件由 `valid` 改為 `validationStatus !== 'FAIL'`——`SUCCESS`／`WARNING` 帶 `suggestedBatchDate` 時仍靜默套用建議下單日；`FAIL` 不套用。
+
+### 6.4 型別 / 資料模型調整
+
+| 項目 | 變更 |
+|------|------|
+| `ValidationStatus`（新增 enum，`orders.ts`）| `SUCCESS` / `WARNING` / `FAIL` 三值 |
+| `OrderProduct`（`orders.ts`）| 新增 `checkValidationStatus?: ValidationStatus`，供 Modal 與產品表錯誤欄依狀態著色 |
+| `ProductCheckStatus`（modal）| `'wait' \| 'pass' \| 'fail'` → 加入 `'warning'` |
+| `ApprovalCheckProductResult`（modal）| `valid: boolean` → `validationStatus: ValidationStatus` |
+
+### 6.5 修改檔案
+
+| # | 影響面 | 檔案 | 變更 |
+|---|--------|------|------|
+| 6.5.1 | 模型 | `src/app/core/models/orders.ts` | 新增 `ValidationStatus` enum；`OrderProduct` 新增 `checkValidationStatus` |
+| 6.5.2 | 元件 | `src/app/share/components/approval-check-modal/approval-check-modal.component.ts` | `ProductCheckStatus` 加 `'warning'`；`ApprovalCheckProductResult.valid` → `validationStatus`；`STEP_PROGRESS` 讀 `validationStatus`、回寫 `errorDescription` 與 `checkValidationStatus`；`onDone` 改以「無 `fail`」判斷 |
+| 6.5.3 | 模板 | `approval-check-modal.component.html` | 品項 avatar 加 `'warning'` icon（`text-color-order-warning` 橘）；訊息文字依狀態著色 |
+| 6.5.4a | 元件 | `src/app/orders/sub-order/products/data-service/microsoft-data-provider.service.ts` | `errMsgCol` 移除靜態 `textColor`，改掛 `cellViewTemplateId: 'errorMsgTmp'`（反應式著色，不用 `onCellAllocate`）|
+| 6.5.4b | 模板 | `src/app/orders/sub-order/products/product-table/product-table.component.html` | 新增 `errorMsgTmp` 模板並註冊到 `customTemplates`；WARNING `text-color-order-warning` 橘、其餘 `text-danger` 紅 |
+| 6.5.4c | 樣式 | `product-table.component.scss`、`approval-check-modal.component.scss` | 各自新增元件層 class `.text-color-order-warning { color: #fa8c16; }`（WARNING 橘色；不放全域 `styles.scss`）|
+| 6.5.5 | 元件 | `src/app/orders/sub-order/products/product.component.ts` | `applyAddonBatchDelay` 套用條件 `valid` → `validationStatus !== 'FAIL'` |
+| — | i18n | `src/assets/i18n/zh-tw.json` | **不變**：WARNING 訊息由後端 `message` 提供 |
+| — | 元件 | `src/app/modification/detail/detail.component.ts` | **不變**：僅用 `result.passed` 與 `errorDescription`，自動沿用新閘門與著色 |
+
+#### 6.5.1 `orders.ts`
+
+```typescript
+/** 微軟下單檢核狀態 (CMP-4556) */
+export enum ValidationStatus {
+  /** 通過所有檢核 */
+  success = 'SUCCESS',
+  /** 累積數量達上限，提示但不擋單 */
+  warning = 'WARNING',
+  /** 硬性規則錯誤，卡控禁止送審 */
+  fail = 'FAIL',
+}
+
+// OrderProduct 新增欄位
+/** 微軟下單檢核狀態 (CMP-4556)：供 Modal／錯誤欄依狀態著色 */
+checkValidationStatus?: ValidationStatus;
+```
+
+#### 6.5.2 `approval-check-modal.component.ts`
+
+```typescript
+/** 產品驗證狀態 */
+export type ProductCheckStatus = 'wait' | 'pass' | 'warning' | 'fail';
+
+/** 單筆產品的下單檢查結果 (CMP-4469 / CMP-4556) */
+export interface ApprovalCheckProductResult {
+  index: number;
+  validationStatus: ValidationStatus;   // 取代原 valid
+  suggestedBatchDate?: string;
+}
+
+// handleSSEEvent — STEP_PROGRESS（每個 index 後端僅回一筆，前端直接寫入）
+case 'STEP_PROGRESS':
+  if (data.data && this.data) {
+    const productIndex = (data.data.index ?? -1);
+    // 防呆：缺欄位視為 FAIL
+    const status: ValidationStatus = data.data.validationStatus ?? ValidationStatus.fail;
+    if (productIndex >= 0 && productIndex < this.data.products.length) {
+      this.productCheckStatuses[productIndex] = this.toCheckStatus(status); // SUCCESS→pass / WARNING→warning / FAIL→fail
+      this.data.products[productIndex].errorDescription =
+        status === ValidationStatus.success ? '' : (data.message || '');
+      this.data.products[productIndex].checkValidationStatus = status;
+      this.productResults[productIndex] = {
+        index: productIndex,
+        validationStatus: status,
+        suggestedBatchDate: data.data.suggestedBatchDate,
+      };
+    }
+  }
+  break;
+
+// onDone — 僅「無 fail」即通過（WARNING 放行）
+this.isChecked = !hasError && this.productCheckStatuses.every(s => s !== 'fail');
+```
+
+#### 6.5.3 `approval-check-modal.component.html`
+
+```html
+@switch (productCheckStatuses[idx]) {
+  @case ('pass') {
+    <span nz-icon nzType="check-circle" class="text-success check-icon"></span>
+  }
+  @case ('warning') {
+    <span nz-icon nzType="exclamation-circle" class="text-color-order-warning check-icon"></span>
+  }
+  @case ('fail') {
+    <span nz-icon nzType="close-circle" class="text-danger check-icon"></span>
+  }
+  @default {
+    <span nz-icon [nzType]="isChecking ? 'loading' : 'check-circle'" class="text-secondary check-icon"></span>
+  }
+}
+...
+@if (product.errorDescription) {
+  <span [class.text-danger]="product.checkValidationStatus === 'FAIL'"
+        [class.text-color-order-warning]="product.checkValidationStatus === 'WARNING'">{{ product.errorDescription }}</span>
+}
+```
+
+#### 6.5.4 `microsoft-data-provider.service.ts` + `product-table.component.html`（錯誤欄著色）
+
+> ⚠️ **不可用 `onCellAllocate` 設 `textColor`**：`onCellAllocate` 僅在 cell 初次配置時執行，**不會在「下單檢查回傳→寫入 `checkValidationStatus`」後重跑**（與 CMP-4469 warningTip 未顯示同源）；cell 的文字值（`errorDescription`）雖會反應式更新，但 cell 設定（`textColor`）是配置當下算定、之後不變，故顏色不會更新。
+
+改用 **`cellViewTemplateId` 自訂顯示模板**（與既有 `modifyNameTmp` 同模式），由 Angular 綁定反應式著色：
+
+`microsoft-data-provider.service.ts` — `errMsgCol` 移除靜態 `textColor`，改掛模板：
+
+```typescript
+const errMsgCol = new FilterAttribute({
+  name: this.translate.instant('error message'),
+  internalVariableName: 'errorDescription',
+  space: 1.5,
+  visible: !pdfView,
+  cellViewTemplateId: 'errorMsgTmp',   // CMP-4556: 自訂顯示，依 checkValidationStatus 著色
+  validator: this.attributeValidator,
+});
+```
+
+`product-table.component.html` —新增模板並註冊到 `customTemplates`：
+
+```html
+[customTemplates]="{'autoTpl': autoTpl, 'modifyNameTmp': modifyNameTmp, 'errorMsgTmp': errorMsgTmp}"
+
+<ng-template #errorMsgTmp let-data="data">
+  @if (data.errorDescription) {
+    <span [class.text-color-order-warning]="data.checkValidationStatus === 'WARNING'"
+          [class.text-danger]="data.checkValidationStatus !== 'WARNING'">{{ data.errorDescription }}</span>
+  }
+</ng-template>
+```
+
+#### 6.5.5 `product.component.ts`
+
+```typescript
+private applyAddonBatchDelay(result: ApprovalCheckResult) {
+  result.productResults?.forEach(productResult => {
+    // CMP-4556: 僅 FAIL 不套用；SUCCESS／WARNING 帶 suggestedBatchDate 仍靜默套用
+    if (productResult.validationStatus === ValidationStatus.fail || !productResult.suggestedBatchDate) { return; }
+    const product = this.products[productResult.index];
+    if (!product) { return; }
+
+    product.batchDate = new Date(productResult.suggestedBatchDate);
+  });
+}
+```
+
+### 6.6 i18n
+
+**無需新增 key**。WARNING 提示文字（含現有／本次／總計／上限數量）一律由後端 `message` 提供，前端僅顯示；FAIL 訊息亦沿用後端 `message`，與 §5 既有流程相同。
+
+### 6.7 邊界條件與例外處理
+
+| # | 情境 | 前端處理 |
+|---|------|----------|
+| W-1 | 單一品項 `WARNING` | 該品項 `warning` 狀態、橘色顯示 `message`；**整體仍可送審** |
+| W-2 | 多品項混合 `SUCCESS` / `WARNING` / `FAIL` | 只要**任一**為 `FAIL` 即整體不通過、卡控；其餘照狀態著色 |
+| W-3 | `WARNING` 同時帶 `suggestedBatchDate`（add-on 又需延後又超量）| 靜默套用 `suggestedBatchDate`（§5）＋橘色顯示超量 `message`；不擋單 |
+| W-4 | `validationStatus` 缺漏（後端未同步上線 / 欄位異常）| **防呆視為 `FAIL`**，卡控並顯示 `message`（若有）；不放行未檢核品項 |
+| W-5 | 使用者重新點「下單檢查」 | 重設品項狀態與 `checkValidationStatus`，依最新一輪 `validationStatus` 重新判斷 |
+| W-6 | 步驟層級 `ERROR`（MCA／合作夥伴資訊等）| 仍以 `hasError` 卡控（與三態品項判斷並存）|
+| W-7 | **同一 `index` 多筆結果之彙整**（例：數量檢核 `WARNING` 與其他規則 `SUCCESS`）| **由後端負責**：後端須將同一品項的多條規則結果彙整為**一筆最終 `STEP_PROGRESS`**（最嚴重狀態＋對應訊息）後再回傳；前端**不去重／不彙整**，若後端重複回多筆，後到者會覆蓋前者（前端依設計不處理）。對應後端 [CMP-4555](https://metaage-corp.atlassian.net/browse/CMP-4555)。 |
+
+### 6.8 影響範圍與向下相容
+
+- **須與後端 CMP-4555 同步上線**：前端不保留 `valid`，後端未送 `validationStatus` 時前端一律視為 `FAIL`（W-4），避免誤放行。
+- **訂單與訂變單共用**：下單檢查 Modal 為 `orders`（`product.component`）與 `modification`（`detail.component`）共用；`modification` 僅消費 `result.passed` 與 `errorDescription`，**自動沿用**新閘門（無 `FAIL` 即通過）與錯誤欄著色，無需改動。
+- **CMP-4469 不受影響**：add-on 自動延後仍靜默套用，僅將判斷條件由 `valid` 改為 `validationStatus !== 'FAIL'`。
+- **送審把關**：`product.component` / `modification` 既有「未通過下單檢查則禁止送審」邏輯改吃新的 `isChecked`（無 `FAIL` 即通過），`WARNING` 因此可順利送審。
